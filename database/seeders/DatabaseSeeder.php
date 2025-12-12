@@ -44,7 +44,6 @@ class DatabaseSeeder extends Seeder
         // Create Categories
         $categories = [
             ['name' => 'UMKM', 'description' => 'Usaha Mikro, Kecil dan Menengah', 'icon' => '🏪'],
-            ['name' => 'Technology', 'description' => 'Tech and innovation projects', 'icon' => '💻'],
             ['name' => 'Education', 'description' => 'Educational initiatives', 'icon' => '📚'],
             ['name' => 'Health', 'description' => 'Healthcare and wellness', 'icon' => '🏥'],
             ['name' => 'Environment', 'description' => 'Environmental conservation', 'icon' => '🌱'],
@@ -63,41 +62,6 @@ class DatabaseSeeder extends Seeder
         // Create Sample Campaigns (only if not exists)
         $creator = User::where('email', 'creator@danakarya.com')->first();
         $umkmCategory = Category::where('name', 'UMKM')->first();
-        $techCategory = Category::where('name', 'Technology')->first();
-
-        if ($creator && $umkmCategory) {
-            \App\Models\Campaign::firstOrCreate(
-                ['slug' => 'warung-kopi-pak-budi-renovasi'],
-                [
-                    'title' => 'Warung Kopi Pak Budi - Renovasi',
-                    'description' => 'Bantu Pak Budi merenovasi warung kopinya agar lebih nyaman untuk pelanggan.',
-                    'target_amount' => 10000000,
-                    'current_amount' => 3500000,
-                    'deadline' => now()->addDays(30),
-                    'category_id' => $umkmCategory->id,
-                    'user_id' => $creator->id,
-                    'status' => 'active',
-                    'image' => 'images/campaigns/default.jpg',
-                ]
-            );
-        }
-
-        if ($creator && $techCategory) {
-            \App\Models\Campaign::firstOrCreate(
-                ['slug' => 'aplikasi-belajar-online-anak-sd'],
-                [
-                    'title' => 'Aplikasi Belajar Online untuk Anak SD',
-                    'description' => 'Kembangkan aplikasi belajar online yang interaktif untuk anak-anak SD di Indonesia.',
-                    'target_amount' => 50000000,
-                    'current_amount' => 12000000,
-                    'deadline' => now()->addDays(60),
-                    'category_id' => $techCategory->id,
-                    'user_id' => $creator->id,
-                    'status' => 'active',
-                    'image' => 'images/campaigns/default.jpg',
-                ]
-            );
-        }
 
         // Additional campaigns from your database
         $educationCategory = Category::where('name', 'Education')->first();
@@ -116,21 +80,6 @@ class DatabaseSeeder extends Seeder
                     'category_id' => $umkmCategory->id,
                     'user_id' => $creator->id,
                     'status' => 'cancelled',
-                    'image' => 'images/campaigns/default.jpg',
-                ]
-            );
-
-            \App\Models\Campaign::firstOrCreate(
-                ['slug' => 'kedai-kopi-lokal-roasting-equipment'],
-                [
-                    'title' => 'Kedai Kopi Lokal - Roasting Equipment',
-                    'description' => 'Kedai kopi lokal yang ingin upgrade mesin roasting untuk menghasilkan kopi berkualitas lebih baik.',
-                    'target_amount' => 85000000,
-                    'current_amount' => 63000000,
-                    'deadline' => now()->addDays(365),
-                    'category_id' => $umkmCategory->id,
-                    'user_id' => $creator->id,
-                    'status' => 'active',
                     'image' => 'images/campaigns/default.jpg',
                 ]
             );

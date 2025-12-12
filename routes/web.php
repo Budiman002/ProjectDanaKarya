@@ -94,6 +94,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('disbursements/{id}', [\App\Http\Controllers\Admin\DisbursementController::class, 'show'])->name('disbursements.show');
     Route::post('disbursements/{id}/approve', [\App\Http\Controllers\Admin\DisbursementController::class, 'approve'])->name('disbursements.approve');
     Route::post('disbursements/{id}/reject', [\App\Http\Controllers\Admin\DisbursementController::class, 'reject'])->name('disbursements.reject');
+
+    Route::get('reports', [\App\Http\Controllers\Admin\ReportController::class, 'index'])->name('reports.index');
 });
 
 // Creator Routes

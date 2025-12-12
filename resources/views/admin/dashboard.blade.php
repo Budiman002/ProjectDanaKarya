@@ -70,9 +70,9 @@
             <h3 class="font-semibold text-gray-900">Manage Categories</h3>
             <p class="text-sm text-gray-600 mt-1">Add or edit campaign categories</p>
         </a>
-        <a href="#" class="p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition opacity-50">
+        <a href="{{ route('admin.reports.index') }}" class="p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition">
             <h3 class="font-semibold text-gray-900">View Reports</h3>
-            <p class="text-sm text-gray-600 mt-1">Coming soon</p>
+            <p class="text-sm text-gray-600 mt-1">Analytics and insights</p>
         </a>
     </div>
 </div>
