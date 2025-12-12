@@ -36,12 +36,36 @@
                                 Backer
                             </span>
                         @endif
-                        <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-semibold rounded-full">
-                            Active
-                        </span>
+                        @if(($user->status ?? 'active') === 'active')
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-semibold rounded-full">
+                                Active
+                            </span>
+                        @else
+                            <span class="px-3 py-1 bg-red-100 text-red-800 text-sm font-semibold rounded-full">
+                                Inactive
+                            </span>
+                        @endif
                     </div>
                 </div>
             </div>
+
+            @if($user->role !== 'admin')
+            <div class="flex items-start gap-3">
+                <form action="{{ route('admin.users.toggle-status', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to {{ ($user->status ?? 'active') === 'active' ? 'deactivate' : 'activate' }} this user?')">
+                    @csrf
+                    @method('POST')
+                    @if(($user->status ?? 'active') === 'active')
+                        <button type="submit" class="px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition">
+                            Deactivate User
+                        </button>
+                    @else
+                        <button type="submit" class="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition">
+                            Activate User
+                        </button>
+                    @endif
+                </form>
+            </div>
+            @endif
         </div>
 
         <div class="mt-8 pt-8 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-6">

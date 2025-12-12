@@ -89,6 +89,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
+    Route::post('users/{id}/toggle-status', [\App\Http\Controllers\Admin\UserController::class, 'toggleStatus'])->name('users.toggle-status');
 
     Route::get('disbursements', [\App\Http\Controllers\Admin\DisbursementController::class, 'index'])->name('disbursements.index');
     Route::get('disbursements/{id}', [\App\Http\Controllers\Admin\DisbursementController::class, 'show'])->name('disbursements.show');

@@ -103,4 +103,22 @@ class UserController extends Controller
             'stats' => $stats,
         ]);
     }
+
+    public function toggleStatus($id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($user->role === 'admin') {
+            return redirect()->back()->with('error', 'Cannot deactivate admin account');
+        }
+
+        $newStatus = $user->status === 'active' ? 'inactive' : 'active';
+        $user->update(['status' => $newStatus]);
+
+        $message = $newStatus === 'active'
+            ? 'User has been activated successfully'
+            : 'User has been deactivated successfully';
+
+        return redirect()->back()->with('success', $message);
+    }
 }
