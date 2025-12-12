@@ -64,6 +64,60 @@
                 </div>
             </div>
 
+            @if($campaign->editLogs && $campaign->editLogs->count() > 0)
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                        Edit History
+                    </h2>
+
+                    <div class="space-y-6">
+                        @php
+                            $groupedLogs = $campaign->editLogs->groupBy(function($log) {
+                                return $log->created_at->format('Y-m-d H:i:s');
+                            });
+                        @endphp
+
+                        @foreach($groupedLogs as $timestamp => $logs)
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <p class="text-sm font-semibold text-gray-900">
+                                        {{ \Carbon\Carbon::parse($timestamp)->format('M d, Y H:i') }}
+                                    </p>
+                                    <span class="text-xs text-gray-500">
+                                        by {{ $logs->first()->user->name }}
+                                    </span>
+                                </div>
+
+                                @if($logs->first()->edit_reason)
+                                    <div class="bg-yellow-50 border border-yellow-200 rounded p-3 mb-3">
+                                        <p class="text-xs font-semibold text-yellow-800 mb-1">Reason:</p>
+                                        <p class="text-sm text-gray-700">{{ $logs->first()->edit_reason }}</p>
+                                    </div>
+                                @endif
+
+                                <div class="space-y-2">
+                                    @foreach($logs as $log)
+                                        <div class="bg-gray-50 rounded p-3">
+                                            <p class="text-xs font-semibold text-gray-600 mb-1">{{ $log->field_name }}</p>
+                                            <div class="flex items-center gap-2 text-sm">
+                                                <span class="text-red-600 line-through">{{ Str::limit($log->old_value, 50) }}</span>
+                                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                                </svg>
+                                                <span class="text-green-600">{{ Str::limit($log->new_value, 50) }}</span>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             @if($campaign->donations->count() > 0)
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-bold text-gray-900 mb-4">Recent Backers ({{ $campaign->donations->count() }})</h2>

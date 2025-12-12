@@ -262,9 +262,18 @@
                     </div>
 
                     <!-- Donate Button -->
-                    <a href="{{ route('donations.create', $campaign->slug) }}" class="block w-full px-6 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white text-center font-bold rounded-lg transition mb-4">
-                        Back This Project
-                    </a>
+                    @if($campaign->status === 'funded' || $campaign->current_amount >= $campaign->target_amount)
+                        <div class="block w-full px-6 py-4 bg-gray-300 text-gray-600 text-center font-bold rounded-lg mb-4 cursor-not-allowed">
+                            Campaign Fully Funded
+                        </div>
+                        <p class="text-sm text-gray-600 text-center mb-4">
+                            This campaign has reached its funding goal and is no longer accepting donations.
+                        </p>
+                    @else
+                        <a href="{{ route('donations.create', $campaign->slug) }}" class="block w-full px-6 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white text-center font-bold rounded-lg transition mb-4">
+                            Back This Project
+                        </a>
+                    @endif
 
                     <!-- Campaign Details -->
                     <div class="space-y-3 text-sm">

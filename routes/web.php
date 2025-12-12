@@ -86,6 +86,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('campaigns', \App\Http\Controllers\Admin\CampaignController::class)->except(['create', 'store']);
     Route::post('campaigns/{id}/approve', [\App\Http\Controllers\Admin\CampaignController::class, 'approve'])->name('campaigns.approve');
     Route::post('campaigns/{id}/reject', [\App\Http\Controllers\Admin\CampaignController::class, 'reject'])->name('campaigns.reject');
+    Route::get('campaigns/{id}/edit-history', [\App\Http\Controllers\Admin\CampaignController::class, 'editHistory'])->name('campaigns.edit-history');
 
     Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');

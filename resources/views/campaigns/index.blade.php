@@ -121,6 +121,13 @@
                                             <span class="text-white text-4xl font-bold">{{ substr($campaign->title, 0, 1) }}</span>
                                         </div>
                                     @endif
+                                    @if($campaign->status === 'funded' || $campaign->current_amount >= $campaign->target_amount)
+                                    <div class="absolute top-3 left-3">
+                                        <span class="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">
+                                            FUNDED
+                                        </span>
+                                    </div>
+                                    @endif
                                     <div class="absolute top-3 right-3">
                                         <span class="px-3 py-1 bg-[#F5A623] text-white text-xs font-semibold rounded-full">
                                             {{ $campaign->category->name }}

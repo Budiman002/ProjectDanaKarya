@@ -21,6 +21,7 @@ protected $fillable = [
     'deadline',
     'image',
     'status',
+    'last_edit_reason',
     'faq_goal',
     'faq_fund_usage',
     'faq_timeline',
@@ -81,5 +82,10 @@ protected $fillable = [
     public function disbursements()
     {
         return $this->hasMany(Disbursement::class);
+    }
+
+    public function editLogs()
+    {
+        return $this->hasMany(CampaignEditLog::class)->orderBy('created_at', 'desc');
     }
 }

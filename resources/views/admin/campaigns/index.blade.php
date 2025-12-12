@@ -92,31 +92,47 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($campaigns as $campaign)
                     <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
-                        @if($campaign->image)
-                            <img src="{{ asset($campaign->image) }}" alt="{{ $campaign->title }}" class="w-full h-48 object-cover">
-                        @else
-                            <div class="w-full h-48 bg-gradient-to-br from-[#2D7A67] to-[#7DD3C0] flex items-center justify-center">
-                                <span class="text-white text-4xl font-bold">{{ substr($campaign->title, 0, 1) }}</span>
-                            </div>
-                        @endif
+                        <a href="{{ route('admin.campaigns.show', $campaign->id) }}" class="block">
+                            @if($campaign->image)
+                                <img src="{{ asset($campaign->image) }}" alt="{{ $campaign->title }}" class="w-full h-48 object-cover hover:opacity-90 transition">
+                            @else
+                                <div class="w-full h-48 bg-gradient-to-br from-[#2D7A67] to-[#7DD3C0] flex items-center justify-center hover:opacity-90 transition">
+                                    <span class="text-white text-4xl font-bold">{{ substr($campaign->title, 0, 1) }}</span>
+                                </div>
+                            @endif
+                        </a>
 
                         <div class="p-4">
                             <div class="flex items-center justify-between mb-2">
                                 <span class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded">{{ $campaign->category->icon }} {{ $campaign->category->name }}</span>
-                                @if($campaign->status === 'pending')
-                                    <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full font-semibold">Pending</span>
-                                @elseif($campaign->status === 'active')
-                                    <span class="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full font-semibold">Active</span>
-                                @elseif($campaign->status === 'funded')
-                                    <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full font-semibold">Funded</span>
-                                @elseif($campaign->status === 'rejected')
-                                    <span class="text-xs px-2 py-1 bg-red-100 text-red-800 rounded-full font-semibold">Rejected</span>
-                                @else
-                                    <span class="text-xs px-2 py-1 bg-gray-200 text-gray-800 rounded-full font-semibold">Cancelled</span>
-                                @endif
+                                <div class="flex items-center gap-1">
+                                    @if($campaign->editLogs && $campaign->editLogs->count() > 0)
+                                        <a href="{{ route('admin.campaigns.edit-history', $campaign->id) }}"
+                                           class="text-xs px-2 py-1 bg-purple-100 text-purple-800 rounded hover:bg-purple-200 transition flex items-center gap-1"
+                                           title="View edit history">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            {{ $campaign->editLogs->count() }}
+                                        </a>
+                                    @endif
+                                    @if($campaign->status === 'pending')
+                                        <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full font-semibold">Pending</span>
+                                    @elseif($campaign->status === 'active')
+                                        <span class="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full font-semibold">Active</span>
+                                    @elseif($campaign->status === 'funded')
+                                        <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full font-semibold">Funded</span>
+                                    @elseif($campaign->status === 'rejected')
+                                        <span class="text-xs px-2 py-1 bg-red-100 text-red-800 rounded-full font-semibold">Rejected</span>
+                                    @else
+                                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-800 rounded-full font-semibold">Cancelled</span>
+                                    @endif
+                                </div>
                             </div>
 
-                            <h3 class="font-bold text-gray-900 mb-1 line-clamp-2">{{ $campaign->title }}</h3>
+                            <a href="{{ route('admin.campaigns.show', $campaign->id) }}" class="block hover:text-[#2D7A67] transition">
+                                <h3 class="font-bold text-gray-900 mb-1 line-clamp-2">{{ $campaign->title }}</h3>
+                            </a>
                             <p class="text-sm text-gray-600 mb-3">By {{ $campaign->user->name }}</p>
 
                             @php

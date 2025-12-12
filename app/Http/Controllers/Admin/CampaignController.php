@@ -14,7 +14,7 @@ class CampaignController extends Controller
 {
 public function index(Request $request)
 {
-    $query = Campaign::with(['user', 'category'])
+    $query = Campaign::with(['user', 'category', 'editLogs'])
         ->withCount('donations');
 
     if ($request->status) {
@@ -47,7 +47,7 @@ public function index(Request $request)
 
     public function show($id)
     {
-        $campaign = Campaign::with(['user', 'category', 'donations.user'])
+        $campaign = Campaign::with(['user', 'category', 'donations.user', 'editLogs.user'])
             ->withCount('donations')
             ->findOrFail($id);
 
@@ -155,5 +155,18 @@ public function index(Request $request)
         NotificationService::campaignRejected($campaign, $reason);
 
         return back()->with('success', "Campaign '{$campaign->title}' has been rejected.");
+    }
+
+    public function editHistory($id)
+    {
+        $campaign = Campaign::with(['user', 'category', 'editLogs' => function($query) {
+            $query->with('user')->orderBy('created_at', 'desc');
+        }])->findOrFail($id);
+
+        return view('admin.campaigns.edit-history', [
+            'title' => 'Edit History',
+            'subtitle' => $campaign->title,
+            'campaign' => $campaign,
+        ]);
     }
 }

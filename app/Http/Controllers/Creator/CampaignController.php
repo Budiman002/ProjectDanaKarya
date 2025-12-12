@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Creator;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use App\Models\CampaignEditLog;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -126,7 +127,8 @@ public function update(Request $request, $id)
         'target_amount' => ['required', 'numeric', 'min:100000'],
         'deadline' => ['required', 'date', 'after:today'],
         'image' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
-        
+        'edit_reason' => ['required', 'string', 'min:20', 'max:1000'],
+
         'faq_goal' => ['nullable', 'string', 'max:500'],
         'faq_fund_usage' => ['nullable', 'string', 'max:500'],
         'faq_timeline' => ['nullable', 'string', 'max:500'],
@@ -137,31 +139,89 @@ public function update(Request $request, $id)
     ]);
     
     $validated['slug'] = Str::slug($validated['slug']);
-    
+    $editReason = $validated['edit_reason'];
+    $validated['last_edit_reason'] = $editReason;
+    unset($validated['edit_reason']);
+
+    $trackableFields = [
+        'title' => 'Title',
+        'slug' => 'Slug',
+        'category_id' => 'Category',
+        'description' => 'Description',
+        'target_amount' => 'Target Amount',
+        'deadline' => 'Deadline',
+        'faq_goal' => 'FAQ: Goal',
+        'faq_fund_usage' => 'FAQ: Fund Usage',
+        'faq_timeline' => 'FAQ: Timeline',
+        'faq_custom_1_question' => 'FAQ: Custom Question 1',
+        'faq_custom_1_answer' => 'FAQ: Custom Answer 1',
+        'faq_custom_2_question' => 'FAQ: Custom Question 2',
+        'faq_custom_2_answer' => 'FAQ: Custom Answer 2',
+    ];
+
     $majorChanges = false;
     if ($request->title !== $campaign->title) $majorChanges = true;
     if ($request->target_amount != $campaign->target_amount) $majorChanges = true;
     if ($request->deadline !== $campaign->deadline) $majorChanges = true;
     if ($request->category_id != $campaign->category_id) $majorChanges = true;
-    
+
     if ($majorChanges && $campaign->status === 'active') {
         $validated['status'] = 'pending';
         $message = 'Campaign updated! Major changes require admin re-approval.';
     } else {
         $message = 'Campaign updated successfully!';
     }
-    
+
     if ($request->hasFile('image')) {
         if ($campaign->image && file_exists(public_path($campaign->image))) {
             unlink(public_path($campaign->image));
         }
-        
+
         $file = $request->file('image');
         $filename = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
         $file->move(public_path('images/campaigns'), $filename);
         $validated['image'] = 'images/campaigns/' . $filename;
+
+        CampaignEditLog::create([
+            'campaign_id' => $campaign->id,
+            'user_id' => Auth::id(),
+            'field_name' => 'Image',
+            'old_value' => $campaign->image,
+            'new_value' => $validated['image'],
+            'edit_reason' => $editReason,
+            'created_at' => now(),
+        ]);
     }
-    
+
+    foreach ($trackableFields as $field => $label) {
+        if (isset($validated[$field]) && $campaign->$field != $validated[$field]) {
+            $oldValue = $campaign->$field;
+            $newValue = $validated[$field];
+
+            if ($field === 'category_id') {
+                $oldCategory = Category::find($oldValue);
+                $newCategory = Category::find($newValue);
+                $oldValue = $oldCategory ? $oldCategory->name : $oldValue;
+                $newValue = $newCategory ? $newCategory->name : $newValue;
+            }
+
+            if ($field === 'target_amount') {
+                $oldValue = 'Rp ' . number_format($oldValue, 0, ',', '.');
+                $newValue = 'Rp ' . number_format($newValue, 0, ',', '.');
+            }
+
+            CampaignEditLog::create([
+                'campaign_id' => $campaign->id,
+                'user_id' => Auth::id(),
+                'field_name' => $label,
+                'old_value' => $oldValue,
+                'new_value' => $newValue,
+                'edit_reason' => $editReason,
+                'created_at' => now(),
+            ]);
+        }
+    }
+
     $campaign->update($validated);
     
     return redirect()->route('creator.campaigns.index')

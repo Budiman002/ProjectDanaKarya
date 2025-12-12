@@ -11,7 +11,7 @@ class CampaignController extends Controller
     public function index(Request $request)
     {
         $query = Campaign::with(['category', 'user'])
-            ->where('status', 'active')
+            ->whereIn('status', ['active', 'funded'])
             ->withCount('donations');
 
         if ($request->has('category')) {

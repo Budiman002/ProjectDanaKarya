@@ -22,10 +22,18 @@ class DonationController extends Controller
 
     public function create($slug)
     {
-        $campaign = Campaign::where('slug', $slug)
-            ->where('status', 'active')
-            ->firstOrFail();
-        
+        $campaign = Campaign::where('slug', $slug)->firstOrFail();
+
+        if ($campaign->status === 'funded' || $campaign->current_amount >= $campaign->target_amount) {
+            return redirect()->route('campaigns.show', $campaign->slug)
+                ->with('error', 'This campaign has reached its funding goal and is no longer accepting donations.');
+        }
+
+        if ($campaign->status !== 'active') {
+            return redirect()->route('campaigns.show', $campaign->slug)
+                ->with('error', 'This campaign is not currently accepting donations.');
+        }
+
         return view('donations.create', [
             'title' => 'Donate to ' . $campaign->title,
             'campaign' => $campaign,
@@ -52,6 +60,12 @@ class DonationController extends Controller
         }
 
         $campaign = Campaign::findOrFail($validated['campaign_id']);
+
+        if ($campaign->status === 'funded' || $campaign->current_amount >= $campaign->target_amount) {
+            return response()->json([
+                'error' => 'This campaign has reached its funding goal and is no longer accepting donations.'
+            ], 400);
+        }
 
         if ($campaign->status !== 'active') {
             return response()->json([

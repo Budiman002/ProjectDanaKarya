@@ -332,16 +332,45 @@
                 </div>
             </div>
 
+            <!-- Edit Reason -->
+            <div>
+                <h3 class="text-lg font-bold text-gray-900 mb-4 pb-2 border-b">📝 Reason for Edit</h3>
+
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                    <p class="text-sm text-yellow-800">
+                        <span class="font-semibold">Required:</span> Please explain what changes you made and why. This helps the admin review your updates.
+                    </p>
+                </div>
+
+                <div>
+                    <label for="edit_reason" class="block text-sm font-medium text-gray-900 mb-2">
+                        What changes did you make? <span class="text-red-500">*</span>
+                    </label>
+                    <textarea
+                        id="edit_reason"
+                        name="edit_reason"
+                        rows="4"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('edit_reason') border-red-500 @enderror"
+                        placeholder="Example: Updated target amount from Rp 10.000.000 to Rp 15.000.000 because material costs increased. Extended deadline by 2 weeks to allow more time for fundraising."
+                        required
+                    >{{ old('edit_reason') }}</textarea>
+                    @error('edit_reason')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                    <p class="text-xs text-gray-500 mt-1">Minimum 20 characters. Be specific about what you changed.</p>
+                </div>
+            </div>
+
             <!-- Submit -->
             <div class="flex gap-3 pt-4 border-t">
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     class="px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
                 >
                     Update Campaign
                 </button>
-                <a 
-                    href="{{ route('creator.campaigns.index') }}" 
+                <a
+                    href="{{ route('creator.campaigns.index') }}"
                     class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg transition"
                 >
                     Cancel
