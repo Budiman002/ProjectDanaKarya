@@ -126,13 +126,33 @@
                             <label for="message" class="block text-sm font-medium text-gray-900 mb-2">
                                 Message to Creator (Optional)
                             </label>
-                            <textarea 
-                                id="message" 
-                                name="message" 
+                            <textarea
+                                id="message"
+                                name="message"
                                 rows="3"
                                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
                                 placeholder="Write a message of support..."
                             >{{ old('message') }}</textarea>
+                        </div>
+
+                        <div>
+                            <label for="bank" class="block text-sm font-medium text-gray-900 mb-2">
+                                Select Bank for Transfer <span class="text-red-500">*</span>
+                            </label>
+                            <select
+                                id="bank"
+                                name="bank"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                                required
+                            >
+                                <option value="">Choose Bank</option>
+                                <option value="BCA">BCA - Bank Central Asia</option>
+                                <option value="MANDIRI">Bank Mandiri</option>
+                                <option value="BNI">BNI - Bank Negara Indonesia</option>
+                                <option value="BRI">BRI - Bank Rakyat Indonesia</option>
+                                <option value="PERMATA">Bank Permata</option>
+                                <option value="CIMB">CIMB Niaga</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -232,7 +252,13 @@ document.getElementById('donation-form').addEventListener('submit', function(e) 
     const formData = new FormData(this);
     formData.append('campaign_id', {{ $campaign->id }});
     formData.append('amount', selectedAmount);
-    
+
+    // Debug: Log all form data
+    console.log('Submitting donation with data:');
+    for (let [key, value] of formData.entries()) {
+        console.log(key + ': ' + value);
+    }
+
     // ✅ MOCK PAYMENT - Direct submission
     fetch('{{ route('donations.store') }}', {
         method: 'POST',
@@ -242,15 +268,29 @@ document.getElementById('donation-form').addEventListener('submit', function(e) 
         },
         body: formData
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log('Response status:', response.status);
+        return response.json();
+    })
     .then(data => {
+        console.log('Response data:', data);
+
         if (data.error) {
             alert('Error: ' + data.error);
             submitButton.disabled = false;
             submitButton.textContent = originalText;
             return;
         }
-        
+
+        if (data.errors) {
+            // Validation errors
+            const errorMessages = Object.values(data.errors).flat().join('\n');
+            alert('Validation Error:\n' + errorMessages);
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
+            return;
+        }
+
         // ✅ Direct redirect to success page (no payment popup!)
         if (data.success) {
             window.location.href = '{{ url('/donations') }}/' + data.donation_id + '/success';

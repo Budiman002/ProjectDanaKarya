@@ -34,14 +34,22 @@ class DonationController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'campaign_id' => ['required', 'exists:campaigns,id'],
-            'amount' => ['required', 'numeric', 'min:10000'],
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'phone' => ['required', 'string', 'max:20'],
-            'message' => ['nullable', 'string', 'max:500'],
-        ]);
+        try {
+            $validated = $request->validate([
+                'campaign_id' => ['required', 'exists:campaigns,id'],
+                'amount' => ['required', 'numeric', 'min:10000'],
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'email', 'max:255'],
+                'phone' => ['required', 'string', 'max:20'],
+                'bank' => ['required', 'string', 'in:BCA,MANDIRI,BNI,BRI,PERMATA,CIMB'],
+                'message' => ['nullable', 'string', 'max:500'],
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'error' => 'Validation failed',
+                'errors' => $e->errors()
+            ], 422);
+        }
 
         $campaign = Campaign::findOrFail($validated['campaign_id']);
 
@@ -51,31 +59,46 @@ class DonationController extends Controller
             ], 400);
         }
 
+        $vaNumber = $this->generateVANumber($validated['bank']);
+
         $donation = Donation::create([
             'user_id' => Auth::id(),
             'campaign_id' => $validated['campaign_id'],
             'amount' => $validated['amount'],
-            'status' => 'confirmed',
-            'payment_method' => 'midtrans',
+            'status' => 'pending',
+            'payment_method' => 'bank_transfer',
+            'bank' => $validated['bank'],
+            'va_number' => $vaNumber,
             'message' => $validated['message'],
         ]);
-
-        $campaign->increment('current_amount', $validated['amount']);
-
-        if ($campaign->current_amount >= $campaign->target_amount) {
-            $campaign->update(['status' => 'funded']);
-        }
 
         $donation->load(['campaign.user', 'user']);
 
         NotificationService::newDonation($donation);
-        NotificationService::donationSuccess($donation);
 
         return response()->json([
             'success' => true,
             'donation_id' => $donation->id,
-            'message' => 'Donation successful!',
+            'message' => 'Please complete your payment',
         ]);
+    }
+
+    private function generateVANumber($bank)
+    {
+        $bankCodes = [
+            'BCA' => '14',
+            'MANDIRI' => '88',
+            'BNI' => '46',
+            'BRI' => '03',
+            'PERMATA' => '13',
+            'CIMB' => '22',
+        ];
+
+        $bankCode = $bankCodes[$bank] ?? '99';
+        $timestamp = substr(time(), -8);
+        $random = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+
+        return $bankCode . $timestamp . $random;
     }
 
     public function success($id)

@@ -14,6 +14,8 @@ class Donation extends Model
     'amount',
     'status',
     'payment_method',
+    'bank',
+    'va_number',
     'transaction_code',
     'message',
     'snap_token',
