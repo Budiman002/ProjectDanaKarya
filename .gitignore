@@ -1,0 +1,55 @@
+*.log
+.DS_Store
+.env
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+Homestead.json
+Homestead.yaml
+Thumbs.db
+npm-debug.log
+yarn-error.log
+
+# Laravel cache files
+/bootstrap/cache/*
+!/bootstrap/cache/.gitkeep
+
+# Storage directories (keep structure, ignore contents)
+/storage/app/*
+!/storage/app/.gitkeep
+!/storage/app/public
+/storage/app/public/*
+!/storage/app/public/.gitkeep
+/storage/framework/cache/*
+!/storage/framework/cache/.gitkeep
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitkeep
+/storage/framework/testing/*
+!/storage/framework/testing/.gitkeep
+/storage/framework/views/*
+!/storage/framework/views/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep
+
+# Ignore SQLite database (if using)
+/database/*.sqlite
+/database/*.sqlite-journal
+
+# Ignore compiled assets
+/public/css/app.css
+/public/js/app.js
+mix-manifest.json

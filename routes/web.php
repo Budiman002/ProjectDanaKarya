@@ -1,0 +1,137 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\CampaignController;
+
+Route::get('/', [PublicController::class, 'home'])->name('home');
+Route::get('/about', [PublicController::class, 'about'])->name('about');
+Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
+Route::post('/contact', [PublicController::class, 'submitContact'])->name('contact.submit');
+
+Route::get('/language/{locale}', function ($locale) {
+    if (in_array($locale, ['id', 'en'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('language.switch');
+
+Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
+Route::get('/campaigns/{slug}', [CampaignController::class, 'show'])->name('campaigns.show');
+
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+    
+    Route::get('/forgot-password', function () {
+        return view('auth.forgot-password', ['title' => 'Forgot Password']);
+    })->name('password.request');
+    
+    Route::post('/forgot-password', function () {
+        return back()->with('status', 'Password reset link sent! (Placeholder - email not actually sent)');
+    })->name('password.email');
+});
+
+// Authenticated Routes
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/dashboard', function () {
+        $user = Auth::user();
+        
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->isCreator()) {
+            return redirect()->route('creator.dashboard');
+        } else {
+            return redirect()->route('backer.dashboard');
+        }
+    })->name('dashboard');
+
+    Route::get('/profile', [AuthController::class, 'showProfile'])->name('profile');
+    Route::put('/profile', [AuthController::class, 'updateProfile'])->name('profile.update');
+    Route::get('/settings', [AuthController::class, 'showSettings'])->name('settings');
+    Route::put('/settings/password', [AuthController::class, 'changePassword'])->name('password.change');
+    
+    Route::get('/notifications', [\App\Http\Controllers\NotificationController::class, 'index'])->name('notifications');
+    Route::post('/notifications/{id}/read', [\App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::post('/notifications/read-all', [\App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('notifications.read-all');
+    Route::get('/notifications/unread-count', [\App\Http\Controllers\NotificationController::class, 'unreadCount'])->name('notifications.unread-count');
+
+    Route::get('/donation-history', [AuthController::class, 'donationHistory'])->name('donation.history');
+});
+
+// Admin Routes
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', function () {
+        $totalCampaigns = \App\Models\Campaign::count();
+        $pendingCampaigns = \App\Models\Campaign::where('status', 'pending')->count();
+        $activeCampaigns = \App\Models\Campaign::where('status', 'active')->count();
+        $totalUsers = \App\Models\User::count();
+        
+        return view('admin.dashboard', [
+            'title' => 'Admin Dashboard',
+            'subtitle' => 'Platform overview',
+            'totalCampaigns' => $totalCampaigns,
+            'pendingCampaigns' => $pendingCampaigns,
+            'activeCampaigns' => $activeCampaigns,
+            'totalUsers' => $totalUsers,
+        ]);
+    })->name('dashboard');
+    
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('campaigns', \App\Http\Controllers\Admin\CampaignController::class)->except(['create', 'store']);
+    Route::post('campaigns/{id}/approve', [\App\Http\Controllers\Admin\CampaignController::class, 'approve'])->name('campaigns.approve');
+    Route::post('campaigns/{id}/reject', [\App\Http\Controllers\Admin\CampaignController::class, 'reject'])->name('campaigns.reject');
+
+    Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
+    Route::get('users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
+
+    Route::get('disbursements', [\App\Http\Controllers\Admin\DisbursementController::class, 'index'])->name('disbursements.index');
+    Route::get('disbursements/{id}', [\App\Http\Controllers\Admin\DisbursementController::class, 'show'])->name('disbursements.show');
+    Route::post('disbursements/{id}/approve', [\App\Http\Controllers\Admin\DisbursementController::class, 'approve'])->name('disbursements.approve');
+    Route::post('disbursements/{id}/reject', [\App\Http\Controllers\Admin\DisbursementController::class, 'reject'])->name('disbursements.reject');
+});
+
+// Creator Routes
+Route::middleware(['auth', 'creator'])->prefix('creator')->name('creator.')->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\Creator\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/campaigns', [\App\Http\Controllers\Creator\CampaignController::class, 'index'])->name('campaigns.index');
+    Route::get('/campaigns/create', [\App\Http\Controllers\Creator\CampaignController::class, 'create'])->name('campaigns.create');
+    Route::post('/campaigns', [\App\Http\Controllers\Creator\CampaignController::class, 'store'])->name('campaigns.store');
+    Route::get('/campaigns/{id}/edit', [\App\Http\Controllers\Creator\CampaignController::class, 'edit'])->name('campaigns.edit');
+    Route::put('/campaigns/{id}', [\App\Http\Controllers\Creator\CampaignController::class, 'update'])->name('campaigns.update');
+
+    Route::get('/campaigns/{campaign}/updates', [\App\Http\Controllers\CampaignUpdateController::class, 'index'])->name('campaigns.updates.index');
+    Route::get('/campaigns/{campaign}/updates/create', [\App\Http\Controllers\CampaignUpdateController::class, 'create'])->name('campaigns.updates.create');
+    Route::post('/campaigns/{campaign}/updates', [\App\Http\Controllers\CampaignUpdateController::class, 'store'])->name('campaigns.updates.store');
+    Route::get('/campaigns/{campaign}/updates/{update}/edit', [\App\Http\Controllers\CampaignUpdateController::class, 'edit'])->name('campaigns.updates.edit');
+    Route::put('/campaigns/{campaign}/updates/{update}', [\App\Http\Controllers\CampaignUpdateController::class, 'update'])->name('campaigns.updates.update');
+    Route::delete('/campaigns/{campaign}/updates/{update}', [\App\Http\Controllers\CampaignUpdateController::class, 'destroy'])->name('campaigns.updates.destroy');
+
+    Route::get('/analytics', [\App\Http\Controllers\Creator\AnalyticsController::class, 'index'])->name('analytics');
+
+    Route::get('/disbursements', [\App\Http\Controllers\Creator\DisbursementController::class, 'index'])->name('disbursements.index');
+    Route::get('/disbursements/{campaignId}/create', [\App\Http\Controllers\Creator\DisbursementController::class, 'create'])->name('disbursements.create');
+    Route::post('/disbursements/{campaignId}', [\App\Http\Controllers\Creator\DisbursementController::class, 'store'])->name('disbursements.store');
+});
+
+// Backer Routes
+Route::middleware(['auth', 'backer'])->prefix('backer')->name('backer.')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('welcome', ['title' => 'Backer Dashboard']);
+    })->name('dashboard');
+});
+
+// Donation Routes (authenticated users)
+Route::middleware('auth')->group(function () {
+    Route::get('/campaigns/{slug}/donate', [\App\Http\Controllers\DonationController::class, 'create'])->name('donations.create');
+    Route::post('/donations', [\App\Http\Controllers\DonationController::class, 'store'])->name('donations.store');
+    Route::get('/donations/{id}/success', [\App\Http\Controllers\DonationController::class, 'success'])->name('donations.success');
+});
+
+// Midtrans Webhook Route (public, di luar middleware)
+Route::post('/midtrans/notification', [\App\Http\Controllers\MidtransWebhookController::class, 'handle']);
