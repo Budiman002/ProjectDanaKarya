@@ -205,9 +205,9 @@
                             </svg>
                             <h3 class="text-lg font-medium text-gray-900 mb-1">{{ __('No backers yet') }}</h3>
                             <p class="text-gray-500 mb-4">{{ __('Be the first to support this campaign!') }}</p>
-                            <a href="{{ route('donations.create', $campaign->slug) }}" class="inline-flex items-center px-6 py-3 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition">
+                            <button onclick="scrollAndHighlightDonateButton()" class="inline-flex items-center px-6 py-3 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg transform hover:scale-105">
                                 {{ __('Back This Project') }}
-                            </a>
+                            </button>
                         </div>
                     @endif
                 </div>
@@ -270,9 +270,9 @@
                             This campaign has reached its funding goal and is no longer accepting donations.
                         </p>
                     @else
-                        <a href="{{ route('donations.create', $campaign->slug) }}" class="block w-full px-6 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white text-center font-bold rounded-lg transition mb-4">
+                        <button id="donate-button" onclick="openDonateModal()" class="block w-full px-6 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white text-center font-bold rounded-lg transition mb-4">
                             Back This Project
-                        </a>
+                        </button>
                     @endif
 
                     <!-- Campaign Details -->
@@ -299,4 +299,320 @@
         </div>
     </div>
 </section>
+
+<!-- Donation Modal -->
+<div id="donate-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4" onclick="closeDonateModal(event)">
+    <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <!-- Modal Header -->
+        <div class="bg-gradient-to-r from-[#2D7A67] to-[#7DD3C0] p-6 text-white sticky top-0">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-sm opacity-90 mb-2">You're supporting</p>
+                    <h2 class="text-2xl font-bold mb-2">{{ $campaign->title }}</h2>
+                    <p class="text-sm opacity-90">by {{ $campaign->user->name }}</p>
+                </div>
+                <button onclick="closeDonateModal()" class="text-white hover:text-gray-200 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal Body -->
+        <form id="donation-form" class="p-6 space-y-6">
+            @csrf
+            <input type="hidden" name="campaign_id" value="{{ $campaign->id }}">
+
+            <!-- Amount Selection -->
+            <div>
+                <label class="block text-sm font-medium text-gray-900 mb-3">Select Amount</label>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
+                    <button type="button" onclick="selectAmount(50000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#2D7A67] hover:bg-[#2D7A67] hover:text-white transition font-semibold">
+                        Rp 50.000
+                    </button>
+                    <button type="button" onclick="selectAmount(100000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#2D7A67] hover:bg-[#2D7A67] hover:text-white transition font-semibold">
+                        Rp 100.000
+                    </button>
+                    <button type="button" onclick="selectAmount(250000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#2D7A67] hover:bg-[#2D7A67] hover:text-white transition font-semibold">
+                        Rp 250.000
+                    </button>
+                    <button type="button" onclick="selectAmount(500000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#2D7A67] hover:bg-[#2D7A67] hover:text-white transition font-semibold">
+                        Rp 500.000
+                    </button>
+                    <button type="button" onclick="selectAmount(1000000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#2D7A67] hover:bg-[#2D7A67] hover:text-white transition font-semibold">
+                        Rp 1.000.000
+                    </button>
+                    <button type="button" onclick="selectCustomAmount()" class="amount-btn px-4 py-3 border-2 border-[#F5A623] text-[#F5A623] rounded-lg hover:bg-[#F5A623] hover:text-white transition font-semibold">
+                        Custom
+                    </button>
+                </div>
+
+                <div id="custom-amount-input" class="hidden">
+                    <label for="amount" class="block text-sm font-medium text-gray-700 mb-2">Enter Custom Amount</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">Rp</span>
+                        <input
+                            type="number"
+                            id="amount"
+                            name="amount"
+                            min="10000"
+                            step="1000"
+                            class="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                            placeholder="Minimum Rp 10.000"
+                        >
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">Minimum donation: Rp 10.000</p>
+                </div>
+
+                <div id="selected-amount-display" class="hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p class="text-sm text-gray-700">Selected Amount:</p>
+                    <p class="text-2xl font-bold text-[#2D7A67]" id="display-amount">Rp 0</p>
+                </div>
+            </div>
+
+            <!-- Donor Information -->
+            <div class="border-t pt-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-4">Your Information</h3>
+
+                <div class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-900 mb-2">
+                            Full Name <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value="{{ Auth::check() ? Auth::user()->name : '' }}"
+                            {{ Auth::check() ? 'readonly' : '' }}
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent {{ Auth::check() ? 'bg-gray-50' : '' }}"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-900 mb-2">
+                            Email <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value="{{ Auth::check() ? Auth::user()->email : '' }}"
+                            {{ Auth::check() ? 'readonly' : '' }}
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent {{ Auth::check() ? 'bg-gray-50' : '' }}"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-900 mb-2">
+                            Phone Number <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value="{{ Auth::check() && Auth::user()->phone ? Auth::user()->phone : '' }}"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                            placeholder="08xxxxxxxxxx"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label for="bank" class="block text-sm font-medium text-gray-900 mb-2">
+                            Select Bank <span class="text-red-500">*</span>
+                        </label>
+                        <select
+                            id="bank"
+                            name="bank"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                            required
+                        >
+                            <option value="">Choose your bank</option>
+                            <option value="BCA">BCA</option>
+                            <option value="MANDIRI">Mandiri</option>
+                            <option value="BNI">BNI</option>
+                            <option value="BRI">BRI</option>
+                            <option value="PERMATA">Permata</option>
+                            <option value="CIMB">CIMB Niaga</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-900 mb-2">
+                            Message (Optional)
+                        </label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="3"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                            placeholder="Leave a message for the campaign creator..."
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="border-t pt-6">
+                <button
+                    type="submit"
+                    class="w-full px-6 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-bold rounded-lg transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+                    id="submit-btn"
+                >
+                    Proceed to Payment
+                </button>
+                <p class="text-xs text-gray-500 text-center mt-3">
+                    You will receive payment instructions after submitting
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.7);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(245, 166, 35, 0);
+        transform: scale(1.05);
+    }
+}
+
+.highlight-donate {
+    animation: pulse-glow 1.5s ease-in-out 3;
+}
+</style>
+
+<script>
+function scrollAndHighlightDonateButton() {
+    const donateButton = document.getElementById('donate-button');
+
+    if (donateButton) {
+        // Smooth scroll to donate button
+        donateButton.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+
+        // Add highlight animation after scroll
+        setTimeout(() => {
+            donateButton.classList.add('highlight-donate');
+
+            // Remove animation class after it finishes
+            setTimeout(() => {
+                donateButton.classList.remove('highlight-donate');
+                // Open modal after highlight
+                openDonateModal();
+            }, 4500); // 1.5s * 3 iterations
+        }, 800); // Delay to let scroll finish
+    }
+}
+
+function openDonateModal() {
+    const modal = document.getElementById('donate-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+}
+
+function closeDonateModal(event) {
+    if (event) event.preventDefault();
+    const modal = document.getElementById('donate-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = ''; // Re-enable scroll
+}
+
+let selectedAmountValue = 0;
+
+function selectAmount(amount) {
+    selectedAmountValue = amount;
+
+    // Update hidden input
+    const amountInput = document.getElementById('amount');
+    amountInput.value = amount;
+
+    // Hide custom input, show selected display
+    document.getElementById('custom-amount-input').classList.add('hidden');
+    document.getElementById('selected-amount-display').classList.remove('hidden');
+
+    // Update display
+    document.getElementById('display-amount').textContent = 'Rp ' + amount.toLocaleString('id-ID');
+
+    // Highlight selected button
+    document.querySelectorAll('.amount-btn').forEach(btn => {
+        btn.classList.remove('border-[#2D7A67]', 'bg-[#2D7A67]', 'text-white');
+        btn.classList.add('border-gray-300');
+    });
+    event.target.classList.remove('border-gray-300');
+    event.target.classList.add('border-[#2D7A67]', 'bg-[#2D7A67]', 'text-white');
+}
+
+function selectCustomAmount() {
+    selectedAmountValue = 0;
+
+    // Show custom input
+    document.getElementById('custom-amount-input').classList.remove('hidden');
+    document.getElementById('selected-amount-display').classList.add('hidden');
+
+    // Clear amount input
+    const amountInput = document.getElementById('amount');
+    amountInput.value = '';
+    amountInput.focus();
+
+    // Update button highlights
+    document.querySelectorAll('.amount-btn').forEach(btn => {
+        btn.classList.remove('border-[#2D7A67]', 'bg-[#2D7A67]', 'text-white');
+        btn.classList.add('border-gray-300');
+    });
+    event.target.classList.remove('border-gray-300', 'border-[#F5A623]', 'text-[#F5A623]');
+    event.target.classList.add('bg-[#F5A623]', 'text-white');
+}
+
+// Form submission
+document.getElementById('donation-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Processing...';
+
+    const formData = new FormData(this);
+
+    try {
+        const response = await fetch('{{ route('donations.store') }}', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json',
+            },
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+            // Redirect to success page
+            window.location.href = '/donations/' + data.donation_id + '/success';
+        } else {
+            alert(data.error || 'An error occurred. Please try again.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Proceed to Payment';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Proceed to Payment';
+    }
+});
+</script>
 @endsection
