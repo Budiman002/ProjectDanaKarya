@@ -4,7 +4,7 @@
 <div class="space-y-6">
     <!-- Back Button -->
     <div>
-        <a href="{{ route('admin.users.index') }}" class="inline-flex items-center text-[#2D7A67] hover:text-[#1A5647] font-semibold">
+        <a href="{{ route('admin.users.index') }}" class="inline-flex items-center text-[#1A7332] hover:text-[#1A5647] font-semibold">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
@@ -16,8 +16,8 @@
     <div class="bg-white rounded-lg shadow-md p-8">
         <div class="flex items-start justify-between">
             <div class="flex items-center gap-6">
-                <div class="w-24 h-24 bg-[#7DD3C0] rounded-full flex items-center justify-center">
-                    <span class="text-white text-4xl font-bold">{{ substr($user->name, 0, 1) }}</span>
+                <div class="w-24 h-24 bg-[#F0B74C] rounded-full flex items-center justify-center">
+                    <span class="text-white text-3xl font-bold">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
                 </div>
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900">{{ $user->name }}</h2>

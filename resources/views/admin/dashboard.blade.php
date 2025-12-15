@@ -62,15 +62,15 @@
 <div class="bg-white rounded-lg shadow p-6">
     <h2 class="text-xl font-bold text-gray-900 mb-4">Quick Actions</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <a href="{{ route('admin.campaigns.index') }}" class="p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition">
+        <a href="{{ route('admin.campaigns.index') }}" class="p-4 border-2 border-gray-200 rounded-lg hover:border-[#1A7332] transition">
             <h3 class="font-semibold text-gray-900">Manage Campaigns</h3>
             <p class="text-sm text-gray-600 mt-1">View and manage all campaigns</p>
         </a>
-        <a href="{{ route('admin.categories.index') }}" class="p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition">
+        <a href="{{ route('admin.categories.index') }}" class="p-4 border-2 border-gray-200 rounded-lg hover:border-[#1A7332] transition">
             <h3 class="font-semibold text-gray-900">Manage Categories</h3>
             <p class="text-sm text-gray-600 mt-1">Add or edit campaign categories</p>
         </a>
-        <a href="#" class="p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition opacity-50">
+        <a href="#" class="p-4 border-2 border-gray-200 rounded-lg hover:border-[#1A7332] transition opacity-50">
             <h3 class="font-semibold text-gray-900">View Reports</h3>
             <p class="text-sm text-gray-600 mt-1">Coming soon</p>
         </a>

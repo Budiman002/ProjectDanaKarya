@@ -8,7 +8,7 @@
             <h2 class="text-xl font-bold text-gray-900">Categories Management</h2>
             <p class="text-sm text-gray-600 mt-1">Manage platform categories for campaigns</p>
         </div>
-        <a href="{{ route('admin.categories.create') }}" class="px-4 py-2 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition flex items-center gap-2">
+        <a href="{{ route('admin.categories.create') }}" class="px-4 py-2 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition flex items-center gap-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
@@ -122,7 +122,7 @@
                             </svg>
                             <p class="text-gray-600 text-lg font-semibold mb-2">No categories yet</p>
                             <p class="text-gray-500 mb-4">Create your first category to get started</p>
-                            <a href="{{ route('admin.categories.create') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
+                            <a href="{{ route('admin.categories.create') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                                 </svg>

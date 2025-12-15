@@ -4,7 +4,7 @@
 <div class="bg-white rounded-2xl shadow-lg p-8">
     <div class="flex justify-between items-center mb-6">
         <h2 class="text-2xl font-bold text-gray-900">Notifications</h2>
-        <button class="text-sm text-[#5AB9A0] hover:underline font-medium">Mark all as read</button>
+        <button class="text-sm text-[#F0B74C] hover:underline font-medium">Mark all as read</button>
     </div>
 
     <!-- Notifications List -->
@@ -12,7 +12,7 @@
         <!-- Today Section -->
         <div>
             <h3 class="text-sm font-semibold text-gray-500 uppercase mb-3">Today</h3>
-            
+
             <!-- Notification Item Placeholder -->
             <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
                 <div class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"></div>
@@ -36,7 +36,7 @@
         <!-- Yesterday Section -->
         <div class="mt-6">
             <h3 class="text-sm font-semibold text-gray-500 uppercase mb-3">Yesterday</h3>
-            
+
             <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition">
                 <div class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"></div>
                 <div class="flex-1">

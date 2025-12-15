@@ -12,14 +12,14 @@
 <body class="font-sans antialiased bg-gray-100">
     <div class="min-h-screen flex">
         <!-- Sidebar -->
-        <aside class="w-64 bg-[#2D7A67] text-white flex-shrink-0">
+        <aside class="w-64 bg-[#1A7332] text-white flex-shrink-0">
             <div class="p-6">
                 <!-- Logo -->
                 <div class="flex items-center gap-3 mb-8">
                     <img src="{{ asset('images/LogoDanaKarya.png') }}" alt="DanaKarya" class="h-10 brightness-0 invert">
                     <span class="font-bold text-lg">Admin Panel</span>
                 </div>
-                
+
                 <!-- Navigation -->
 <nav class="space-y-2">
     <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition {{ request()->routeIs('admin.dashboard') ? 'bg-white/20' : '' }}">
@@ -28,21 +28,21 @@
         </svg>
         <span>Dashboard</span>
     </a>
-    
+
     <a href="{{ route('admin.categories.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition {{ request()->routeIs('admin.categories.*') ? 'bg-white/20' : '' }}">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
         </svg>
         <span>Categories</span>
     </a>
-    
+
     <a href="{{ route('admin.campaigns.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition {{ request()->routeIs('admin.campaigns.*') ? 'bg-white/20' : '' }}">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
         </svg>
         <span>Campaigns</span>
     </a>
-    
+
     <a href="{{ route('admin.users.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition {{ request()->routeIs('admin.users.*') ? 'bg-white/20' : '' }}">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -85,7 +85,7 @@
                         <h1 class="text-2xl font-bold text-gray-900">{{ $title ?? 'Admin Panel' }}</h1>
                         <p class="text-sm text-gray-600 mt-1">{{ $subtitle ?? '' }}</p>
                     </div>
-                    
+
                     <!-- User Menu -->
                     <div class="flex items-center gap-4">
                         @include('components.language-switcher')
@@ -96,8 +96,8 @@
 
                         <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 transition">
-                            <div class="w-10 h-10 bg-[#7DD3C0] rounded-full flex items-center justify-center">
-                                <span class="text-white font-bold">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                            <div class="w-10 h-10 bg-[#F0B74C] rounded-full flex items-center justify-center">
+                                <span class="text-white font-bold">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
                             </div>
                             <div class="text-left">
                                 <p class="text-sm font-semibold text-gray-900">{{ Auth::user()->name }}</p>

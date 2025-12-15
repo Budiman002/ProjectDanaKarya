@@ -10,7 +10,7 @@
 <p>The campaign you supported, <strong>{{ $update->campaign->title }}</strong>, has just posted a new update!</p>
 
 <div class="info-box">
-    <h3 style="margin-top: 0; color: #2D7A67;">{{ $update->title }}</h3>
+    <h3 style="margin-top: 0; color: #1A7332;">{{ $update->title }}</h3>
     <p style="margin: 10px 0; white-space: pre-line;">{{ \Str::limit($update->content, 300) }}</p>
     @if(strlen($update->content) > 300)
     <p style="margin: 5px 0;"><em>Read the full update on the campaign page...</em></p>

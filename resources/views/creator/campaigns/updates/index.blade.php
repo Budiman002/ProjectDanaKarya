@@ -12,7 +12,7 @@
                 <a href="{{ route('creator.campaigns.index') }}" class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition">
                     {{ __('Back to Campaigns') }}
                 </a>
-                <a href="{{ route('creator.campaigns.updates.create', $campaign) }}" class="px-4 py-2 bg-[#2D7A67] hover:bg-[#1A5647] text-white rounded-lg transition">
+                <a href="{{ route('creator.campaigns.updates.create', $campaign) }}" class="px-4 py-2 bg-[#1A7332] hover:bg-[#1A5647] text-white rounded-lg transition">
                     {{ __('Post Update') }}
                 </a>
             </div>
@@ -96,7 +96,7 @@
                     <h3 class="mt-2 text-sm font-medium text-gray-900">{{ __('No updates yet') }}</h3>
                     <p class="mt-1 text-sm text-gray-500">{{ __('Start by posting your first update') }}</p>
                     <div class="mt-6">
-                        <a href="{{ route('creator.campaigns.updates.create', $campaign) }}" class="inline-flex items-center px-4 py-2 bg-[#2D7A67] hover:bg-[#1A5647] text-white rounded-lg transition">
+                        <a href="{{ route('creator.campaigns.updates.create', $campaign) }}" class="inline-flex items-center px-4 py-2 bg-[#1A7332] hover:bg-[#1A5647] text-white rounded-lg transition">
                             {{ __('Post Update') }}
                         </a>
                     </div>

@@ -47,7 +47,7 @@
                     id="title" 
                     name="title" 
                     value="{{ old('title', $campaign->title) }}"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('title') border-red-500 @enderror"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('title') border-red-500 @enderror"
                     required
                 >
                 @error('title')
@@ -64,7 +64,7 @@
                     id="slug" 
                     name="slug" 
                     value="{{ old('slug', $campaign->slug) }}"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('slug') border-red-500 @enderror"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('slug') border-red-500 @enderror"
                     required
                 >
                 @error('slug')
@@ -79,7 +79,7 @@
                 <select 
                     id="category_id" 
                     name="category_id"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('category_id') border-red-500 @enderror"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('category_id') border-red-500 @enderror"
                     required
                 >
                     @foreach($categories as $category)
@@ -101,7 +101,7 @@
                     id="description" 
                     name="description" 
                     rows="8"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('description') border-red-500 @enderror"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('description') border-red-500 @enderror"
                     required
                 >{{ old('description', $campaign->description) }}</textarea>
                 @error('description')
@@ -121,7 +121,7 @@
                         value="{{ old('target_amount', $campaign->target_amount) }}"
                         min="100000"
                         step="1000"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('target_amount') border-red-500 @enderror"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('target_amount') border-red-500 @enderror"
                         required
                     >
                     @error('target_amount')
@@ -140,7 +140,7 @@
                         name="deadline" 
                         value="{{ old('deadline', $campaign->deadline) }}"
                         min="{{ date('Y-m-d') }}"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('deadline') border-red-500 @enderror"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('deadline') border-red-500 @enderror"
                         required
                     >
                     @error('deadline')
@@ -166,7 +166,7 @@
                     id="image" 
                     name="image" 
                     accept="image/jpeg,image/jpg,image/png"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('image') border-red-500 @enderror"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('image') border-red-500 @enderror"
                 >
                 @error('image')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -181,7 +181,7 @@
                 <select 
                     id="status" 
                     name="status"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('status') border-red-500 @enderror"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('status') border-red-500 @enderror"
                     required
                 >
                     <option value="pending" {{ old('status', $campaign->status) == 'pending' ? 'selected' : '' }}>Pending</option>
@@ -220,7 +220,7 @@
             <div class="flex gap-3 pt-4">
                 <button 
                     type="submit" 
-                    class="px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
+                    class="px-6 py-3 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
                 >
                     Update Campaign
                 </button>

@@ -69,7 +69,7 @@
                 <select
                     name="status"
                     id="status"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                     onchange="this.form.submit()"
                 >
                     <option value="">All Status</option>
@@ -112,8 +112,8 @@
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    <div class="w-10 h-10 bg-[#7DD3C0] rounded-full flex items-center justify-center mr-3">
-                                        <span class="text-white font-bold">{{ substr($disbursement->campaign->user->name, 0, 1) }}</span>
+                                    <div class="w-10 h-10 bg-[#F0B74C] rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-white text-sm font-bold">{{ strtoupper(substr($disbursement->campaign->creator->name, 0, 1)) }}</span>
                                     </div>
                                     <div>
                                         <div class="text-sm font-medium text-gray-900">{{ $disbursement->campaign->user->name }}</div>
@@ -152,7 +152,7 @@
                                 {{ $disbursement->created_at->format('M d, Y') }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <a href="{{ route('admin.disbursements.show', $disbursement->id) }}" class="text-[#2D7A67] hover:text-[#1A5647]">
+                                <a href="{{ route('admin.disbursements.show', $disbursement->id) }}" class="text-[#1A7332] hover:text-[#1A5647]">
                                     Review
                                 </a>
                             </td>

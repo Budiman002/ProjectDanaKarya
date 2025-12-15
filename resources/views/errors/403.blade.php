@@ -6,7 +6,7 @@
     <title>403 - Access Denied | DanaKarya</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased bg-gradient-to-br from-[#B8E6D5] to-[#7DD3C0]">
+<body class="font-sans antialiased bg-gradient-to-br from-gray-50 to-gray-100">
     <div class="min-h-screen flex items-center justify-center px-4">
         <div class="max-w-md w-full">
             <!-- Logo -->
@@ -25,10 +25,10 @@
 
                 <!-- Error Code -->
                 <h1 class="text-6xl font-bold text-gray-900 mb-2">403</h1>
-                
+
                 <!-- Error Title -->
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">Access Denied</h2>
-                
+
                 <!-- Error Message -->
                 <p class="text-gray-600 mb-8">
                     You don't have permission to access this page. Please contact your administrator if you believe this is a mistake.
@@ -39,8 +39,8 @@
                     <a href="javascript:history.back()" class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg transition">
                         Go Back
                     </a>
-                    
-                    <a href="/" class="px-6 py-3 bg-[#5AB9A0] hover:bg-[#4A9A88] text-white font-semibold rounded-lg transition">
+
+                    <a href="/" class="px-6 py-3 bg-[#F0B74C] hover:bg-[#d9a340] text-white font-semibold rounded-lg transition">
                         Home
                     </a>
                 </div>
@@ -48,7 +48,7 @@
 
             <!-- Help Text -->
             <p class="text-center text-white text-sm mt-6">
-                Need help? Contact us at 
+                Need help? Contact us at
                 <a href="mailto:support@danakarya.com" class="font-semibold hover:underline">support@danakarya.com</a>
             </p>
         </div>

@@ -35,7 +35,7 @@
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">No Donations Yet</h3>
             <p class="text-gray-600 mb-6">Start supporting campaigns and make a difference!</p>
-            <a href="{{ route('campaigns.index') }}" class="inline-block px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
+            <a href="{{ route('campaigns.index') }}" class="inline-block px-6 py-3 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
                 Browse Campaigns
             </a>
         </div>
@@ -112,7 +112,7 @@
 
                         <!-- Action Button -->
                         <div class="mt-4">
-                            <a href="{{ route('campaigns.show', $donation->campaign->slug) }}" class="inline-block px-4 py-2 bg-[#2D7A67] hover:bg-[#1A5647] text-white text-sm font-semibold rounded-lg transition">
+                            <a href="{{ route('campaigns.show', $donation->campaign->slug) }}" class="inline-block px-4 py-2 bg-[#1A7332] hover:bg-[#1A5647] text-white text-sm font-semibold rounded-lg transition">
                                 View Campaign
                             </a>
                         </div>

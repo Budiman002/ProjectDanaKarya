@@ -37,7 +37,7 @@
                 @if($campaign->image)
                     <img src="{{ asset($campaign->image) }}" alt="{{ $campaign->title }}" class="w-full h-96 object-cover">
                 @else
-                    <div class="w-full h-96 bg-gradient-to-br from-[#2D7A67] to-[#7DD3C0] flex items-center justify-center">
+                    <div class="w-full h-96 bg-gradient-to-br from-[#1A7332] to-[#F0B74C] flex items-center justify-center">
                         <span class="text-white text-6xl font-bold">{{ substr($campaign->title, 0, 1) }}</span>
                     </div>
                 @endif
@@ -71,8 +71,8 @@
                         @foreach($campaign->donations->take(10) as $donation)
                             <div class="flex items-center justify-between py-3 border-b border-gray-200">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 bg-[#7DD3C0] rounded-full flex items-center justify-center">
-                                        <span class="text-white font-bold">{{ substr($donation->user->name, 0, 1) }}</span>
+                                    <div class="w-10 h-10 bg-[#F0B74C] rounded-full flex items-center justify-center">
+                                        <span class="text-white font-bold">{{ strtoupper(substr($donation->user->name, 0, 1)) }}</span>
                                     </div>
                                     <div>
                                         <p class="font-semibold text-gray-900">{{ $donation->user->name }}</p>
@@ -93,7 +93,7 @@
         <div class="space-y-6">
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-lg font-bold text-gray-900 mb-4">Campaign Info</h2>
-                
+
                 <div class="space-y-4">
                     <div>
                         <p class="text-sm text-gray-600 mb-1">Creator</p>
@@ -113,13 +113,13 @@
 
                     <div>
                         <p class="text-sm text-gray-600 mb-1">Raised</p>
-                        <p class="text-2xl font-bold text-[#2D7A67]">Rp {{ number_format($campaign->current_amount, 0, ',', '.') }}</p>
+                        <p class="text-2xl font-bold text-[#1A7332]">Rp {{ number_format($campaign->current_amount, 0, ',', '.') }}</p>
                         @php
                             $percentage = $campaign->target_amount > 0 ? min(($campaign->current_amount / $campaign->target_amount) * 100, 100) : 0;
                         @endphp
                         <div class="mt-2">
                             <div class="w-full bg-gray-300 rounded-full h-2">
-                                <div class="bg-[#2D7A67] h-2 rounded-full" style="width: {{ $percentage }}%"></div>
+                                <div class="bg-[#1A7332] h-2 rounded-full" style="width: {{ $percentage }}%"></div>
                             </div>
                             <p class="text-sm text-gray-600 mt-1">{{ number_format($percentage, 0) }}% funded</p>
                         </div>
@@ -145,7 +145,7 @@
 
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-lg font-bold text-gray-900 mb-4">Quick Actions</h2>
-                
+
                 <div class="space-y-2">
                     <form method="POST" action="{{ route('admin.campaigns.destroy', $campaign->id) }}" onsubmit="return confirm('Delete this campaign? This cannot be undone.')">
                         @csrf

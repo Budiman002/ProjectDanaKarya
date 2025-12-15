@@ -19,7 +19,7 @@
             background-color: #ffffff;
         }
         .header {
-            background: linear-gradient(135deg, #2D7A67 0%, #7DD3C0 100%);
+            background: linear-gradient(135deg, #1A7332 0%, #F0B74C 100%);
             padding: 30px 20px;
             text-align: center;
         }
@@ -33,7 +33,7 @@
             padding: 40px 30px;
         }
         .content h2 {
-            color: #2D7A67;
+            color: #1A7332;
             font-size: 24px;
             margin-top: 0;
             margin-bottom: 20px;
@@ -57,7 +57,7 @@
         }
         .info-box {
             background-color: #f8f9fa;
-            border-left: 4px solid #2D7A67;
+            border-left: 4px solid #1A7332;
             padding: 15px 20px;
             margin: 20px 0;
             border-radius: 4px;
@@ -74,7 +74,7 @@
             color: #777;
         }
         .footer a {
-            color: #2D7A67;
+            color: #1A7332;
             text-decoration: none;
         }
     </style>

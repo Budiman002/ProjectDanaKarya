@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative bg-gradient-to-r from-[#2D7A67] to-[#1A5647] text-white py-20">
+<section class="relative bg-gradient-to-r from-[#1A7332] to-[#1A5647] text-white py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <!-- Text -->
@@ -12,7 +12,7 @@
                     {{ __('Memberdayakan UMKM Indonesia untuk mewujudkan impian mereka melalui platform crowdfunding yang aman dan terpercaya.') }}
                 </p>
             </div>
-            
+
             <!-- Image -->
             <div class="relative">
                 <img src="{{ asset('images/AuthBackground.png') }}" alt="About DanaKarya" class="rounded-2xl shadow-2xl">
@@ -23,19 +23,27 @@
 
 <!-- Mission Statement -->
 <section class="py-16 md:py-24 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{{ __('Our Mission') }}</h2>
-        </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Logo -->
+            <div class="flex items-center justify-center">
+                <img src="{{ asset('images/HDLogo.png') }}" alt="DanaKarya Logo" class="max-w-md w-full">
+            </div>
 
-        <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
-            <p>
-                {{ __('DanaKarya adalah platform crowdfunding yang didedikasikan untuk membantu Usaha Mikro, Kecil, dan Menengah (UMKM) Indonesia berkembang dan mewujudkan impian mereka. Kami percaya bahwa setiap bisnis kecil memiliki potensi besar untuk membawa perubahan positif bagi masyarakat dan ekonomi Indonesia.') }}
-            </p>
+            <!-- Text Content -->
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{{ __('Our Mission') }}</h2>
 
-            <p>
-                {{ __('Melalui platform kami, para pemilik UMKM dapat mengajukan campaign untuk mendapatkan pendanaan dari komunitas backers yang peduli. Dengan transparansi penuh dan sistem yang aman, kami memastikan setiap dana yang terkumpul digunakan sesuai tujuan dan memberikan dampak nyata bagi perkembangan bisnis UMKM.') }}
-            </p>
+                <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+                    <p>
+                        {{ __('DanaKarya adalah platform crowdfunding yang didedikasikan untuk membantu Usaha Mikro, Kecil, dan Menengah (UMKM) Indonesia berkembang dan mewujudkan impian mereka. Kami percaya bahwa setiap bisnis kecil memiliki potensi besar untuk membawa perubahan positif bagi masyarakat dan ekonomi Indonesia.') }}
+                    </p>
+
+                    <p>
+                        {{ __('Melalui platform kami, para pemilik UMKM dapat mengajukan campaign untuk mendapatkan pendanaan dari komunitas backers yang peduli. Dengan transparansi penuh dan sistem yang aman, kami memastikan setiap dana yang terkumpul digunakan sesuai tujuan dan memberikan dampak nyata bagi perkembangan bisnis UMKM.') }}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -47,10 +55,10 @@
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('Our Impact') }}</h2>
             <p class="text-lg text-gray-600">{{ __('Bersama-sama kita telah membuat perbedaan') }}</p>
         </div>
-        
+
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div class="text-center">
-                <div class="w-20 h-20 bg-[#2D7A67] rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="w-20 h-20 bg-[#1A7332] rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                     </svg>
@@ -58,9 +66,9 @@
                 <p class="text-4xl font-bold text-gray-900 mb-2">{{ $totalCampaigns ?? 0 }}+</p>
                 <p class="text-gray-600">{{ __('Campaigns Launched') }}</p>
             </div>
-            
+
             <div class="text-center">
-                <div class="w-20 h-20 bg-[#2D7A67] rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="w-20 h-20 bg-[#1A7332] rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
@@ -68,9 +76,9 @@
                 <p class="text-4xl font-bold text-gray-900 mb-2">{{ $fundedCampaigns ?? 0 }}+</p>
                 <p class="text-gray-600">{{ __('Successfully Funded') }}</p>
             </div>
-            
+
             <div class="text-center">
-                <div class="w-20 h-20 bg-[#2D7A67] rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="w-20 h-20 bg-[#1A7332] rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
@@ -78,9 +86,9 @@
                 <p class="text-4xl font-bold text-gray-900 mb-2">{{ $totalBackers ?? 0 }}+</p>
                 <p class="text-gray-600">{{ __('Happy Backers') }}</p>
             </div>
-            
+
             <div class="text-center">
-                <div class="w-20 h-20 bg-[#2D7A67] rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="w-20 h-20 bg-[#1A7332] rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
@@ -101,7 +109,7 @@
                 {{ __('Platform terpercaya dengan sistem yang transparan dan aman untuk mendukung pertumbuhan UMKM Indonesia') }}
             </p>
         </div>
-        
+
         <div class="grid md:grid-cols-3 gap-8">
             <!-- Feature 1 -->
             <div class="text-center p-6">
@@ -115,7 +123,7 @@
                     {{ __('Sistem keamanan berlapis dan proses verifikasi ketat untuk melindungi dana Anda') }}
                 </p>
             </div>
-            
+
             <!-- Feature 2 -->
             <div class="text-center p-6">
                 <div class="w-16 h-16 bg-[#F5A623] rounded-full flex items-center justify-center mx-auto mb-4">
@@ -129,7 +137,7 @@
                     {{ __('Tracking progress campaign secara real-time dan laporan penggunaan dana yang jelas') }}
                 </p>
             </div>
-            
+
             <!-- Feature 3 -->
             <div class="text-center p-6">
                 <div class="w-16 h-16 bg-[#F5A623] rounded-full flex items-center justify-center mx-auto mb-4">
@@ -147,7 +155,7 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-16 bg-gradient-to-r from-[#2D7A67] to-[#1A5647] text-white">
+<section class="py-16 bg-gradient-to-r from-[#1A7332] to-[#1A5647] text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-6">{{ __('Siap Mewujudkan Impian Anda?') }}</h2>
         <p class="text-xl text-gray-100 mb-8">

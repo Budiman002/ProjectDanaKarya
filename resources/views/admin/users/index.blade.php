@@ -70,7 +70,7 @@
                 <select
                     name="role"
                     id="role"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                     onchange="this.form.submit()"
                 >
                     <option value="">All Roles</option>
@@ -86,7 +86,7 @@
                 <select
                     name="sort"
                     id="sort"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                     onchange="this.form.submit()"
                 >
                     <option value="newest" {{ request('sort') === 'newest' || !request('sort') ? 'selected' : '' }}>Newest First</option>
@@ -104,11 +104,11 @@
                         id="search"
                         value="{{ request('search') }}"
                         placeholder="Search by name or email..."
-                        class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                        class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                     >
                     <button
                         type="submit"
-                        class="px-6 py-2 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
+                        class="px-6 py-2 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
                     >
                         Search
                     </button>
@@ -145,8 +145,8 @@
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    <div class="w-10 h-10 bg-[#7DD3C0] rounded-full flex items-center justify-center mr-3">
-                                        <span class="text-white font-bold">{{ substr($user->name, 0, 1) }}</span>
+                                    <div class="w-10 h-10 bg-[#F0B74C] rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-white font-bold">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
                                     </div>
                                     <div>
                                         <div class="text-sm font-medium text-gray-900">{{ $user->name }}</div>
@@ -184,7 +184,7 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <a href="{{ route('admin.users.show', $user->id) }}" class="text-[#2D7A67] hover:text-[#1A5647]">
+                                <a href="{{ route('admin.users.show', $user->id) }}" class="text-[#1A7332] hover:text-[#1A5647]">
                                     View Details
                                 </a>
                             </td>

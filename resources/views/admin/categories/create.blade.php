@@ -52,7 +52,7 @@
                     id="name" 
                     name="name" 
                     value="{{ old('name') }}"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('name') border-red-500 @enderror"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('name') border-red-500 @enderror"
                     placeholder="e.g., Teknologi & Inovasi"
                     required
                 >
@@ -72,7 +72,7 @@
                     id="slug" 
                     name="slug" 
                     value="{{ old('slug') }}"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('slug') border-red-500 @enderror"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('slug') border-red-500 @enderror"
                     placeholder="e.g., teknologi-inovasi"
                     required
                 >
@@ -92,7 +92,7 @@
                     id="icon" 
                     name="icon" 
                     value="{{ old('icon') }}"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('icon') border-red-500 @enderror"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('icon') border-red-500 @enderror"
                     placeholder="e.g., 💻 🎨 🏪 📚 🏥 🌱"
                     maxlength="10"
                     required
@@ -124,7 +124,7 @@
                     id="description" 
                     name="description" 
                     rows="4"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('description') border-red-500 @enderror"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('description') border-red-500 @enderror"
                     placeholder="Brief description of this category..."
                 >{{ old('description') }}</textarea>
                 @error('description')
@@ -141,7 +141,7 @@
                 <select 
                     id="status" 
                     name="status"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('status') border-red-500 @enderror"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('status') border-red-500 @enderror"
                     required
                 >
                     <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
@@ -157,7 +157,7 @@
             <div class="flex gap-3 pt-4">
                 <button 
                     type="submit" 
-                    class="px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
+                    class="px-6 py-3 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
                 >
                     Create Category
                 </button>

@@ -22,7 +22,7 @@
             @if(Auth::user()->notifications()->unread()->count() > 0)
             <form action="{{ route('notifications.read-all') }}" method="POST" class="inline">
                 @csrf
-                <button type="submit" class="text-xs text-[#2D7A67] hover:text-[#1A5647] font-semibold">
+                <button type="submit" class="text-xs text-[#1A7332] hover:text-[#1A5647] font-semibold">
                     {{ __('Mark all as read') }}
                 </button>
             </form>
@@ -70,7 +70,7 @@
 
                                 <div class="mt-2 flex gap-2">
                                     @if(isset($notification->data['campaign_slug']))
-                                        <a href="{{ url('/campaigns/' . $notification->data['campaign_slug']) }}" class="text-xs text-[#2D7A67] hover:text-[#1A5647] font-semibold">
+                                        <a href="{{ url('/campaigns/' . $notification->data['campaign_slug']) }}" class="text-xs text-[#1A7332] hover:text-[#1A5647] font-semibold">
                                             {{ __('View Campaign') }} →
                                         </a>
                                     @endif
@@ -98,7 +98,7 @@
 
         @if($notifications->count() > 0)
         <div class="p-3 border-t border-gray-200 text-center">
-            <a href="{{ route('notifications') }}" class="text-sm text-[#2D7A67] hover:text-[#1A5647] font-semibold">
+            <a href="{{ route('notifications') }}" class="text-sm text-[#1A7332] hover:text-[#1A5647] font-semibold">
                 {{ __('View all notifications') }}
             </a>
         </div>

@@ -21,7 +21,7 @@
                         id="title"
                         name="title"
                         value="{{ old('title') }}"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('title') border-red-500 @enderror"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('title') border-red-500 @enderror"
                         placeholder="{{ __('Enter update title') }}"
                         required
                     >
@@ -38,7 +38,7 @@
                         id="content"
                         name="content"
                         rows="10"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('content') border-red-500 @enderror"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('content') border-red-500 @enderror"
                         placeholder="{{ __('Write your update content here...') }}"
                         required
                     >{{ old('content') }}</textarea>
@@ -56,7 +56,7 @@
                         id="image"
                         name="image"
                         accept="image/*"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('image') border-red-500 @enderror"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('image') border-red-500 @enderror"
                     >
                     <p class="text-gray-500 text-sm mt-1">{{ __('Max file size: 2MB') }}</p>
                     @error('image')
@@ -67,7 +67,7 @@
                 <div class="flex gap-3">
                     <button
                         type="submit"
-                        class="px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
+                        class="px-6 py-3 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
                     >
                         {{ __('Post Update') }}
                     </button>

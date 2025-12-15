@@ -23,16 +23,16 @@
 
                 <!-- Navigation Links (Desktop) -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-gray-700 hover:text-[#2D7A67] transition font-medium {{ request()->is('/') ? 'text-[#2D7A67]' : '' }}">
+                    <a href="/" class="text-gray-700 hover:text-[#1A7332] transition font-medium {{ request()->is('/') ? 'text-[#1A7332]' : '' }}">
                         {{ __('Home') }}
                     </a>
-                    <a href="/about" class="text-gray-700 hover:text-[#2D7A67] transition font-medium {{ request()->is('about') ? 'text-[#2D7A67]' : '' }}">
+                    <a href="/about" class="text-gray-700 hover:text-[#1A7332] transition font-medium {{ request()->is('about') ? 'text-[#1A7332]' : '' }}">
                         {{ __('About') }}
                     </a>
-                    <a href="{{ route('campaigns.index') }}" class="text-gray-700 hover:text-[#2D7A67] transition font-medium {{ request()->is('campaigns*') ? 'text-[#2D7A67]' : '' }}">
+                    <a href="{{ route('campaigns.index') }}" class="text-gray-700 hover:text-[#1A7332] transition font-medium {{ request()->is('campaigns*') ? 'text-[#1A7332]' : '' }}">
                         {{ __('Campaigns') }}
                     </a>
-                    <a href="/contact" class="text-gray-700 hover:text-[#2D7A67] transition font-medium {{ request()->is('contact') ? 'text-[#2D7A67]' : '' }}">
+                    <a href="/contact" class="text-gray-700 hover:text-[#1A7332] transition font-medium {{ request()->is('contact') ? 'text-[#1A7332]' : '' }}">
                         {{ __('Contact Us') }}
                     </a>
                 </div>
@@ -46,7 +46,7 @@
                     @endauth
 
                     @guest
-                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-[#2D7A67] transition font-medium">
+                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-[#1A7332] transition font-medium">
                             {{ __('Login') }}
                         </a>
                         <a href="{{ route('register') }}" class="px-6 py-2 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-md">
@@ -56,8 +56,8 @@
                         <!-- Logged In - User Dropdown -->
                         <div class="relative" x-data="{ open: false }">
                             <button @click="open = !open" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition">
-                                <div class="w-8 h-8 bg-[#7DD3C0] rounded-full flex items-center justify-center">
-                                    <span class="text-white font-bold text-sm">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                                <div class="w-8 h-8 bg-[#F0B74C] rounded-full flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
                                 </div>
                                 <span class="text-gray-700 font-medium">{{ Auth::user()->name }}</span>
                                 <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,7 +99,7 @@
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
-                    <button type="button" class="text-gray-700 hover:text-[#2D7A67]">
+                    <button type="button" class="text-gray-700 hover:text-[#1A7332]">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
@@ -115,7 +115,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#2D7A67] text-white">
+    <footer class="bg-[#1A7332] text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <!-- Company Info -->
@@ -150,8 +150,6 @@
                         <li><a href="/about" class="text-gray-200 hover:text-white transition text-sm">{{ __('About') }}</a></li>
                         <li><a href="{{ route('campaigns.index') }}" class="text-gray-200 hover:text-white transition text-sm">{{ __('Browse Campaigns') }}</a></li>
                         <li><a href="/contact" class="text-gray-200 hover:text-white transition text-sm">{{ __('Contact Us') }}</a></li>
-                        <li><a href="#" class="text-gray-200 hover:text-white transition text-sm">{{ __('Terms and Conditions') }}</a></li>
-                        <li><a href="#" class="text-gray-200 hover:text-white transition text-sm">{{ __('Privacy Policy') }}</a></li>
                     </ul>
                 </div>
 

@@ -92,7 +92,7 @@
                             id="title" 
                             name="title" 
                             value="{{ old('title', $campaign->title) }}"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('title') border-red-500 @enderror"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('title') border-red-500 @enderror"
                             required
                         >
                         @error('title')
@@ -109,7 +109,7 @@
                             id="slug" 
                             name="slug" 
                             value="{{ old('slug', $campaign->slug) }}"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('slug') border-red-500 @enderror"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('slug') border-red-500 @enderror"
                             required
                         >
                         @error('slug')
@@ -124,7 +124,7 @@
                         <select 
                             id="category_id" 
                             name="category_id"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('category_id') border-red-500 @enderror"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('category_id') border-red-500 @enderror"
                             required
                         >
                             @foreach($categories as $category)
@@ -153,7 +153,7 @@
                             id="description" 
                             name="description" 
                             rows="8"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('description') border-red-500 @enderror"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('description') border-red-500 @enderror"
                             required
                         >{{ old('description', $campaign->description) }}</textarea>
                         @error('description')
@@ -173,7 +173,7 @@
                                 value="{{ old('target_amount', $campaign->target_amount) }}"
                                 min="100000"
                                 step="10000"
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('target_amount') border-red-500 @enderror"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('target_amount') border-red-500 @enderror"
                                 required
                             >
                             @error('target_amount')
@@ -191,7 +191,7 @@
                                 name="deadline" 
                                 value="{{ old('deadline', \Carbon\Carbon::parse($campaign->deadline)->format('Y-m-d')) }}"
                                 min="{{ date('Y-m-d', strtotime('+1 day')) }}"
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('deadline') border-red-500 @enderror"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('deadline') border-red-500 @enderror"
                                 required
                             >
                             @error('deadline')
@@ -224,7 +224,7 @@
                         id="image" 
                         name="image" 
                         accept="image/jpeg,image/jpg,image/png"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('image') border-red-500 @enderror"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('image') border-red-500 @enderror"
                     >
                     @error('image')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -251,7 +251,7 @@
                                 name="faq_goal" 
                                 rows="3"
                                 maxlength="500"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                             >{{ old('faq_goal', $campaign->faq_goal) }}</textarea>
                             <p class="text-xs text-gray-500 mt-1">Max 500 karakter</p>
                         </div>
@@ -265,7 +265,7 @@
                                 name="faq_fund_usage" 
                                 rows="3"
                                 maxlength="500"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                             >{{ old('faq_fund_usage', $campaign->faq_fund_usage) }}</textarea>
                             <p class="text-xs text-gray-500 mt-1">Max 500 karakter</p>
                         </div>
@@ -279,7 +279,7 @@
                                 name="faq_timeline" 
                                 rows="3"
                                 maxlength="500"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                             >{{ old('faq_timeline', $campaign->faq_timeline) }}</textarea>
                             <p class="text-xs text-gray-500 mt-1">Max 500 karakter</p>
                         </div>
@@ -299,14 +299,14 @@
                                 name="faq_custom_1_question" 
                                 value="{{ old('faq_custom_1_question', $campaign->faq_custom_1_question) }}"
                                 maxlength="255"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent mb-2"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent mb-2"
                             >
                             <textarea 
                                 id="faq_custom_1_answer" 
                                 name="faq_custom_1_answer" 
                                 rows="2"
                                 maxlength="500"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                             >{{ old('faq_custom_1_answer', $campaign->faq_custom_1_answer) }}</textarea>
                         </div>
 
@@ -318,14 +318,14 @@
                                 name="faq_custom_2_question" 
                                 value="{{ old('faq_custom_2_question', $campaign->faq_custom_2_question) }}"
                                 maxlength="255"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent mb-2"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent mb-2"
                             >
                             <textarea 
                                 id="faq_custom_2_answer" 
                                 name="faq_custom_2_answer" 
                                 rows="2"
                                 maxlength="500"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                             >{{ old('faq_custom_2_answer', $campaign->faq_custom_2_answer) }}</textarea>
                         </div>
                     </div>
@@ -336,7 +336,7 @@
             <div class="flex gap-3 pt-4 border-t">
                 <button 
                     type="submit" 
-                    class="px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
+                    class="px-6 py-3 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
                 >
                     Update Campaign
                 </button>

@@ -63,7 +63,7 @@
     <div class="bg-white rounded-lg shadow p-6">
         <div class="flex flex-col md:flex-row gap-4 mb-6">
             <form method="GET" action="{{ route('admin.campaigns.index') }}" class="flex gap-4 flex-1">
-                <select name="status" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent">
+                <select name="status" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A7332] focus:border-transparent">
                     <option value="">All Status</option>
                     <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
                     <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
@@ -73,16 +73,16 @@
                 </select>
 
                 <div class="flex-1 relative">
-                    <input 
-                        type="text" 
-                        name="search" 
+                    <input
+                        type="text"
+                        name="search"
                         value="{{ request('search') }}"
                         placeholder="Search by title or creator..."
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                     >
                 </div>
 
-                <button type="submit" class="px-6 py-2 bg-[#2D7A67] hover:bg-[#1A5647] text-white rounded-lg transition">
+                <button type="submit" class="px-6 py-2 bg-[#1A7332] hover:bg-[#1A5647] text-white rounded-lg transition">
                     Search
                 </button>
             </form>
@@ -95,7 +95,7 @@
                         @if($campaign->image)
                             <img src="{{ asset($campaign->image) }}" alt="{{ $campaign->title }}" class="w-full h-48 object-cover">
                         @else
-                            <div class="w-full h-48 bg-gradient-to-br from-[#2D7A67] to-[#7DD3C0] flex items-center justify-center">
+                            <div class="w-full h-48 bg-gradient-to-br from-[#1A7332] to-[#F0B74C] flex items-center justify-center">
                                 <span class="text-white text-4xl font-bold">{{ substr($campaign->title, 0, 1) }}</span>
                             </div>
                         @endif
@@ -125,7 +125,7 @@
 
                             <div class="mb-3">
                                 <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-[#2D7A67] h-2 rounded-full" style="width: {{ $percentage }}%"></div>
+                                    <div class="bg-[#1A7332] h-2 rounded-full" style="width: {{ $percentage }}%"></div>
                                 </div>
                                 <div class="flex justify-between text-xs text-gray-600 mt-1">
                                     <span>{{ number_format($percentage, 0) }}%</span>

@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Environment', 'description' => 'Environmental conservation', 'icon' => '🌱'],
             ['name' => 'Social', 'description' => 'Social impact projects', 'icon' => '🤝'],
             ['name' => 'Arts', 'description' => 'Creative and artistic projects', 'icon' => '🎨'],
-            ['name' => 'Seni & Budaya', 'description' => 'Seni dan Budaya Indonesia', 'icon' => '🎭'],
+            ['name' => 'Art & Culture', 'description' => 'Seni dan Budaya Indonesia', 'icon' => '🎭'],
         ];
 
         foreach ($categories as $category) {

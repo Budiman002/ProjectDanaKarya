@@ -4,7 +4,7 @@
 <div class="space-y-6">
     <!-- Back Button -->
     <div>
-        <a href="{{ route('creator.campaigns.index') }}" class="inline-flex items-center text-[#2D7A67] hover:text-[#1A5647] font-semibold">
+        <a href="{{ route('creator.campaigns.index') }}" class="inline-flex items-center text-[#1A7332] hover:text-[#1A5647] font-semibold">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
@@ -45,7 +45,7 @@
                     name="bank_name"
                     id="bank_name"
                     required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('bank_name') border-red-500 @enderror"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('bank_name') border-red-500 @enderror"
                 >
                     <option value="">-- Select Bank --</option>
                     <option value="BCA - Bank Central Asia" {{ old('bank_name') == 'BCA - Bank Central Asia' ? 'selected' : '' }}>BCA - Bank Central Asia</option>
@@ -86,7 +86,7 @@
                     value="{{ old('account_number') }}"
                     required
                     placeholder="e.g., 1234567890"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('account_number') border-red-500 @enderror"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('account_number') border-red-500 @enderror"
                 >
                 @error('account_number')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -103,7 +103,7 @@
                     value="{{ old('account_holder', Auth::user()->name) }}"
                     required
                     placeholder="Name as shown on bank account"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('account_holder') border-red-500 @enderror"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('account_holder') border-red-500 @enderror"
                 >
                 @error('account_holder')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -118,7 +118,7 @@
                     id="creator_notes"
                     rows="4"
                     placeholder="Any additional information for the admin..."
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('creator_notes') border-red-500 @enderror"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('creator_notes') border-red-500 @enderror"
                 >{{ old('creator_notes') }}</textarea>
                 @error('creator_notes')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -153,7 +153,7 @@
                 </a>
                 <button
                     type="submit"
-                    class="px-6 py-2 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
+                    class="px-6 py-2 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
                 >
                     Submit Withdrawal Request
                 </button>

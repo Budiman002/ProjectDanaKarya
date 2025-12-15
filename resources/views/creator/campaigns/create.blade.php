@@ -34,7 +34,7 @@
                             id="title" 
                             name="title" 
                             value="{{ old('title') }}"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('title') border-red-500 @enderror"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('title') border-red-500 @enderror"
                             placeholder="e.g., Bantu UMKM Warung Makan Ibu Sri Berkembang"
                             required
                         >
@@ -53,7 +53,7 @@
                             id="slug" 
                             name="slug" 
                             value="{{ old('slug') }}"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('slug') border-red-500 @enderror"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('slug') border-red-500 @enderror"
                             placeholder="warung-makan-ibu-sri"
                             required
                         >
@@ -70,7 +70,7 @@
                         <select 
                             id="category_id" 
                             name="category_id"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('category_id') border-red-500 @enderror"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('category_id') border-red-500 @enderror"
                             required
                         >
                             <option value="">-- Pilih Kategori --</option>
@@ -100,7 +100,7 @@
                             id="description" 
                             name="description" 
                             rows="8"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('description') border-red-500 @enderror"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('description') border-red-500 @enderror"
                             placeholder="Jelaskan detail campaign Anda... (minimal 100 karakter)"
                             required
                         >{{ old('description') }}</textarea>
@@ -122,7 +122,7 @@
                                 value="{{ old('target_amount') }}"
                                 min="100000"
                                 step="10000"
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('target_amount') border-red-500 @enderror"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('target_amount') border-red-500 @enderror"
                                 placeholder="5000000"
                                 required
                             >
@@ -142,7 +142,7 @@
                                 name="deadline" 
                                 value="{{ old('deadline') }}"
                                 min="{{ date('Y-m-d', strtotime('+1 day')) }}"
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('deadline') border-red-500 @enderror"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('deadline') border-red-500 @enderror"
                                 required
                             >
                             @error('deadline')
@@ -167,7 +167,7 @@
                         id="image" 
                         name="image" 
                         accept="image/jpeg,image/jpg,image/png"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('image') border-red-500 @enderror"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('image') border-red-500 @enderror"
                         required
                     >
                     @error('image')
@@ -201,7 +201,7 @@
                                 name="faq_goal" 
                                 rows="3"
                                 maxlength="500"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('faq_goal') border-red-500 @enderror"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('faq_goal') border-red-500 @enderror"
                                 placeholder="Jelaskan tujuan utama dari campaign Anda..."
                             >{{ old('faq_goal') }}</textarea>
                             @error('faq_goal')
@@ -219,7 +219,7 @@
                                 name="faq_fund_usage" 
                                 rows="3"
                                 maxlength="500"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('faq_fund_usage') border-red-500 @enderror"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('faq_fund_usage') border-red-500 @enderror"
                                 placeholder="Jelaskan detail penggunaan dana, misalnya: 40% bahan baku, 30% peralatan, 30% operasional..."
                             >{{ old('faq_fund_usage') }}</textarea>
                             @error('faq_fund_usage')
@@ -237,7 +237,7 @@
                                 name="faq_timeline" 
                                 rows="3"
                                 maxlength="500"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('faq_timeline') border-red-500 @enderror"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('faq_timeline') border-red-500 @enderror"
                                 placeholder="Jelaskan timeline realisasi campaign, misalnya: Bulan 1-2 persiapan, Bulan 3-4 eksekusi..."
                             >{{ old('faq_timeline') }}</textarea>
                             @error('faq_timeline')
@@ -262,7 +262,7 @@
                                 name="faq_custom_1_question" 
                                 value="{{ old('faq_custom_1_question') }}"
                                 maxlength="255"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent mb-2 @error('faq_custom_1_question') border-red-500 @enderror"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent mb-2 @error('faq_custom_1_question') border-red-500 @enderror"
                                 placeholder="e.g., Apa yang membuat campaign ini berbeda?"
                             >
                             <textarea 
@@ -270,7 +270,7 @@
                                 name="faq_custom_1_answer" 
                                 rows="2"
                                 maxlength="500"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('faq_custom_1_answer') border-red-500 @enderror"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('faq_custom_1_answer') border-red-500 @enderror"
                                 placeholder="Jawaban untuk pertanyaan custom 1..."
                             >{{ old('faq_custom_1_answer') }}</textarea>
                             @error('faq_custom_1_question')
@@ -289,7 +289,7 @@
                                 name="faq_custom_2_question" 
                                 value="{{ old('faq_custom_2_question') }}"
                                 maxlength="255"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent mb-2 @error('faq_custom_2_question') border-red-500 @enderror"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent mb-2 @error('faq_custom_2_question') border-red-500 @enderror"
                                 placeholder="e.g., Bagaimana cara mendukung campaign ini selain donasi?"
                             >
                             <textarea 
@@ -297,7 +297,7 @@
                                 name="faq_custom_2_answer" 
                                 rows="2"
                                 maxlength="500"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent @error('faq_custom_2_answer') border-red-500 @enderror"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('faq_custom_2_answer') border-red-500 @enderror"
                                 placeholder="Jawaban untuk pertanyaan custom 2..."
                             >{{ old('faq_custom_2_answer') }}</textarea>
                             @error('faq_custom_2_question')
@@ -315,7 +315,7 @@
             <div class="flex gap-3 pt-4 border-t">
                 <button 
                     type="submit" 
-                    class="px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
+                    class="px-6 py-3 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition"
                 >
                     Submit for Review
                 </button>

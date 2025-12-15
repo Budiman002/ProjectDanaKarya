@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Page Header -->
-<section class="bg-gradient-to-r from-[#2D7A67] to-[#1A5647] text-white py-12">
+<section class="bg-gradient-to-r from-[#1A7332] to-[#1A5647] text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-3xl md:text-4xl font-bold mb-4">{{ __('Browse Campaigns') }}</h1>
         <p class="text-lg text-gray-100">{{ __('Support Indonesian MSMEs to realize their dreams') }}</p>
@@ -33,9 +33,9 @@
                                     name="search"
                                     value="{{ request('search') }}"
                                     placeholder="{{ __('Search campaigns...') }}"
-                                    class="w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                                    class="w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                                 >
-                                <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#2D7A67]">
+                                <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#1A7332]">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                                     </svg>
@@ -58,7 +58,7 @@
                             <select
                                 name="sort"
                                 onchange="document.getElementById('sortForm').submit()"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                             >
                                 <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>{{ __('Newest') }}</option>
                                 <option value="popular" {{ request('sort') == 'popular' ? 'selected' : '' }}>{{ __('Most Popular') }}</option>
@@ -72,17 +72,17 @@
                         <h3 class="font-semibold text-gray-900 mb-3">{{ __('Categories') }}</h3>
                         <div class="space-y-2">
                             <a href="{{ route('campaigns.index', array_merge(request()->except('category'), request()->only(['search', 'sort']))) }}"
-                               class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-100 transition {{ !request('category') ? 'bg-[#2D7A67] text-white hover:bg-[#1A5647]' : 'text-gray-700' }}">
+                               class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-100 transition {{ !request('category') ? 'bg-[#1A7332] text-white hover:bg-[#1A5647]' : 'text-gray-700' }}">
                                 <span>{{ __('All Categories') }}</span>
                                 <span class="text-sm {{ !request('category') ? 'text-white' : 'text-gray-500' }}">{{ $campaigns->total() }}</span>
                             </a>
-    
+
                             @foreach($categories as $category)
-                                <a href="{{ route('campaigns.index', array_merge(['category' => $category->slug], request()->only(['search', 'sort']))) }}" 
-                                   class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-100 transition {{ request('category') == $category->slug ? 'bg-[#2D7A67] text-white hover:bg-[#1A5647]' : 'text-gray-700' }}">
+                                <a href="{{ route('campaigns.index', array_merge(['category' => $category->slug], request()->only(['search', 'sort']))) }}"
+                                   class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-100 transition {{ request('category') == $category->slug ? 'bg-[#1A7332] text-white hover:bg-[#1A5647]' : 'text-gray-700' }}">
                                     <span class="flex items-center gap-2">
                                         <span>{{ $category->icon }}</span>
-                                        <span>{{ $category->name }}</span>
+                                        <span>{{ __($category->name) }}</span>
                                     </span>
                                     <span class="text-sm {{ request('category') == $category->slug ? 'text-white' : 'text-gray-500' }}">{{ $category->campaigns_count }}</span>
                                 </a>
@@ -117,7 +117,7 @@
                                     @if($campaign->image)
                                         <img src="{{ asset($campaign->image) }}" alt="{{ $campaign->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                                     @else
-                                        <div class="w-full h-full bg-gradient-to-br from-[#2D7A67] to-[#7DD3C0] flex items-center justify-center">
+                                        <div class="w-full h-full bg-gradient-to-br from-[#1A7332] to-[#F0B74C] flex items-center justify-center">
                                             <span class="text-white text-4xl font-bold">{{ substr($campaign->title, 0, 1) }}</span>
                                         </div>
                                     @endif
@@ -127,30 +127,30 @@
                                         </span>
                                     </div>
                                 </div>
-                                
+
                                 <div class="p-6">
-                                    <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#2D7A67] transition">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#1A7332] transition">
                                         {{ $campaign->title }}
                                     </h3>
                                     <p class="text-gray-600 text-sm mb-4 line-clamp-2">
                                         {{ Str::limit($campaign->description, 100) }}
                                     </p>
-                                    
+
                                     @php
-                                        $percentage = $campaign->target_amount > 0 
-                                            ? min(($campaign->current_amount / $campaign->target_amount) * 100, 100) 
+                                        $percentage = $campaign->target_amount > 0
+                                            ? min(($campaign->current_amount / $campaign->target_amount) * 100, 100)
                                             : 0;
                                     @endphp
                                     <div class="mb-4">
                                         <div class="flex justify-between text-sm mb-2">
-                                            <span class="font-semibold text-[#2D7A67]">{{ number_format($percentage, 0) }}%</span>
+                                            <span class="font-semibold text-[#1A7332]">{{ number_format($percentage, 0) }}%</span>
                                             <span class="text-gray-600">{{ \Carbon\Carbon::parse($campaign->deadline)->diffForHumans() }}</span>
                                         </div>
                                         <div class="w-full bg-gray-200 rounded-full h-2">
-                                            <div class="bg-[#2D7A67] h-2 rounded-full transition-all" style="width: {{ $percentage }}%"></div>
+                                            <div class="bg-[#1A7332] h-2 rounded-full transition-all" style="width: {{ $percentage }}%"></div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex justify-between items-center mb-4">
                                         <div>
                                             <p class="text-lg font-bold text-gray-900">Rp {{ number_format($campaign->current_amount, 0, ',', '.') }}</p>
@@ -180,7 +180,7 @@
                         </svg>
                         <h3 class="text-xl font-bold text-gray-900 mb-2">{{ __('No campaigns found') }}</h3>
                         <p class="text-gray-600 mb-6">{{ __('Try adjusting your search or filters to find what you\'re looking for.') }}</p>
-                        <a href="{{ route('campaigns.index') }}" class="inline-block px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
+                        <a href="{{ route('campaigns.index') }}" class="inline-block px-6 py-3 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
                             {{ __('Clear Filters') }}
                         </a>
                     </div>

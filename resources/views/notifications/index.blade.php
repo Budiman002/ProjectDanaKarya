@@ -19,7 +19,7 @@
             @if($unreadCount > 0)
             <form action="{{ route('notifications.read-all') }}" method="POST">
                 @csrf
-                <button type="submit" class="px-4 py-2 bg-[#2D7A67] hover:bg-[#1A5647] text-white text-sm rounded-lg transition">
+                <button type="submit" class="px-4 py-2 bg-[#1A7332] hover:bg-[#1A5647] text-white text-sm rounded-lg transition">
                     {{ __('Mark all as read') }}
                 </button>
             </form>
@@ -89,7 +89,7 @@
                                     @if(!$notification->is_read)
                                     <form action="{{ route('notifications.read', $notification->id) }}" method="POST" class="ml-4">
                                         @csrf
-                                        <button type="submit" class="text-xs text-[#2D7A67] hover:text-[#1A5647] font-semibold">
+                                        <button type="submit" class="text-xs text-[#1A7332] hover:text-[#1A5647] font-semibold">
                                             {{ __('Mark as read') }}
                                         </button>
                                     </form>
@@ -97,7 +97,7 @@
                                 </div>
 
                                 @if(isset($notification->data['campaign_slug']))
-                                    <a href="{{ url('/campaigns/' . $notification->data['campaign_slug']) }}" class="mt-3 inline-block text-sm text-[#2D7A67] hover:text-[#1A5647] font-semibold">
+                                    <a href="{{ url('/campaigns/' . $notification->data['campaign_slug']) }}" class="mt-3 inline-block text-sm text-[#1A7332] hover:text-[#1A5647] font-semibold">
                                         {{ __('View Campaign') }} →
                                     </a>
                                 @endif

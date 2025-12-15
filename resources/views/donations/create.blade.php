@@ -14,7 +14,7 @@
 
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
             <!-- Campaign Summary -->
-            <div class="bg-gradient-to-r from-[#2D7A67] to-[#7DD3C0] p-6 text-white">
+            <div class="bg-gradient-to-r from-[#1A7332] to-[#F0B74C] p-6 text-white">
                 <p class="text-sm opacity-90 mb-2">You're supporting</p>
                 <h1 class="text-2xl font-bold mb-2">{{ $campaign->title }}</h1>
                 <p class="text-sm opacity-90">by {{ $campaign->user->name }}</p>
@@ -27,21 +27,21 @@
                 <!-- Amount Selection -->
                 <div>
                     <label class="block text-sm font-medium text-gray-900 mb-3">Select Amount</label>
-                    
+
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
-                        <button type="button" onclick="selectAmount(50000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#2D7A67] hover:bg-[#2D7A67] hover:text-white transition font-semibold">
+                        <button type="button" onclick="selectAmount(50000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#1A7332] hover:bg-[#1A7332] hover:text-white transition font-semibold">
                             Rp 50.000
                         </button>
-                        <button type="button" onclick="selectAmount(100000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#2D7A67] hover:bg-[#2D7A67] hover:text-white transition font-semibold">
+                        <button type="button" onclick="selectAmount(100000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#1A7332] hover:bg-[#1A7332] hover:text-white transition font-semibold">
                             Rp 100.000
                         </button>
-                        <button type="button" onclick="selectAmount(250000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#2D7A67] hover:bg-[#2D7A67] hover:text-white transition font-semibold">
+                        <button type="button" onclick="selectAmount(250000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#1A7332] hover:bg-[#1A7332] hover:text-white transition font-semibold">
                             Rp 250.000
                         </button>
-                        <button type="button" onclick="selectAmount(500000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#2D7A67] hover:bg-[#2D7A67] hover:text-white transition font-semibold">
+                        <button type="button" onclick="selectAmount(500000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#1A7332] hover:bg-[#1A7332] hover:text-white transition font-semibold">
                             Rp 500.000
                         </button>
-                        <button type="button" onclick="selectAmount(1000000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#2D7A67] hover:bg-[#2D7A67] hover:text-white transition font-semibold">
+                        <button type="button" onclick="selectAmount(1000000)" class="amount-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-[#1A7332] hover:bg-[#1A7332] hover:text-white transition font-semibold">
                             Rp 1.000.000
                         </button>
                         <button type="button" onclick="selectCustomAmount()" class="amount-btn px-4 py-3 border-2 border-[#F5A623] text-[#F5A623] rounded-lg hover:bg-[#F5A623] hover:text-white transition font-semibold">
@@ -53,13 +53,13 @@
                         <label for="amount" class="block text-sm font-medium text-gray-700 mb-2">Enter Custom Amount</label>
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">Rp</span>
-                            <input 
-                                type="number" 
-                                id="amount" 
-                                name="amount" 
+                            <input
+                                type="number"
+                                id="amount"
+                                name="amount"
                                 min="10000"
                                 step="1000"
-                                class="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                                class="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                                 placeholder="Minimum Rp 10.000"
                             >
                         </div>
@@ -68,26 +68,26 @@
 
                     <div id="selected-amount-display" class="hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
                         <p class="text-sm text-gray-700">Selected Amount:</p>
-                        <p class="text-2xl font-bold text-[#2D7A67]" id="display-amount">Rp 0</p>
+                        <p class="text-2xl font-bold text-[#1A7332]" id="display-amount">Rp 0</p>
                     </div>
                 </div>
 
                 <!-- Donor Information -->
                 <div class="border-t pt-6">
                     <h3 class="text-lg font-bold text-gray-900 mb-4">Your Information</h3>
-                    
+
                     <div class="space-y-4">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-900 mb-2">
                                 Full Name <span class="text-red-500">*</span>
                             </label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name" 
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
                                 value="{{ Auth::check() ? Auth::user()->name : old('name') }}"
                                 {{ Auth::check() ? 'readonly' : '' }}
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent {{ Auth::check() ? 'bg-gray-50' : '' }}"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent {{ Auth::check() ? 'bg-gray-50' : '' }}"
                                 required
                             >
                         </div>
@@ -96,13 +96,13 @@
                             <label for="email" class="block text-sm font-medium text-gray-900 mb-2">
                                 Email <span class="text-red-500">*</span>
                             </label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
                                 value="{{ Auth::check() ? Auth::user()->email : old('email') }}"
                                 {{ Auth::check() ? 'readonly' : '' }}
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent {{ Auth::check() ? 'bg-gray-50' : '' }}"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent {{ Auth::check() ? 'bg-gray-50' : '' }}"
                                 required
                             >
                         </div>
@@ -111,12 +111,12 @@
                             <label for="phone" class="block text-sm font-medium text-gray-900 mb-2">
                                 Phone Number <span class="text-red-500">*</span>
                             </label>
-                            <input 
-                                type="tel" 
-                                id="phone" 
-                                name="phone" 
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
                                 value="{{ old('phone') }}"
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                                 placeholder="08123456789"
                                 required
                             >
@@ -126,22 +126,22 @@
                             <label for="message" class="block text-sm font-medium text-gray-900 mb-2">
                                 Message to Creator (Optional)
                             </label>
-                            <textarea 
-                                id="message" 
-                                name="message" 
+                            <textarea
+                                id="message"
+                                name="message"
                                 rows="3"
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                                 placeholder="Write a message of support..."
                             >{{ old('message') }}</textarea>
                         </div>
                     </div>
                 </div>
 
-                            <button 
-                            type="submit" 
+                            <button
+                            type="submit"
                             id="pay-button"
                             class="w-full px-6 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-bold rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
-                            disabled    
+                            disabled
                             >
                             Continue to Payment
                         </button>
@@ -157,42 +157,42 @@ let selectedAmount = 0;
 
 function selectAmount(amount) {
     selectedAmount = amount;
-    
+
     document.getElementById('custom-amount-input').classList.add('hidden');
     document.getElementById('amount').value = '';
-    
+
     document.querySelectorAll('.amount-btn').forEach(btn => {
-        btn.classList.remove('border-[#2D7A67]', 'bg-[#2D7A67]', 'text-white');
+        btn.classList.remove('border-[#1A7332]', 'bg-[#1A7332]', 'text-white');
         btn.classList.add('border-gray-300');
     });
-    
+
     event.target.classList.remove('border-gray-300');
-    event.target.classList.add('border-[#2D7A67]', 'bg-[#2D7A67]', 'text-white');
-    
+    event.target.classList.add('border-[#1A7332]', 'bg-[#1A7332]', 'text-white');
+
     showSelectedAmount(amount);
-    
+
     document.getElementById('pay-button').disabled = false;
 }
 
 function selectCustomAmount() {
     document.querySelectorAll('.amount-btn').forEach(btn => {
-        btn.classList.remove('border-[#2D7A67]', 'bg-[#2D7A67]', 'text-white');
+        btn.classList.remove('border-[#1A7332]', 'bg-[#1A7332]', 'text-white');
         btn.classList.add('border-gray-300');
     });
-    
+
     event.target.classList.remove('border-gray-300');
     event.target.classList.add('border-[#F5A623]', 'bg-[#F5A623]', 'text-white');
-    
+
     document.getElementById('custom-amount-input').classList.remove('hidden');
     document.getElementById('selected-amount-display').classList.add('hidden');
     document.getElementById('amount').focus();
-    
+
     document.getElementById('pay-button').disabled = true;
 }
 
 document.getElementById('amount').addEventListener('input', function() {
     const amount = parseInt(this.value) || 0;
-    
+
     if (amount >= 10000) {
         selectedAmount = amount;
         showSelectedAmount(amount);
@@ -210,14 +210,14 @@ function showSelectedAmount(amount) {
         currency: 'IDR',
         minimumFractionDigits: 0
     });
-    
+
     document.getElementById('display-amount').textContent = formatter.format(amount);
     document.getElementById('selected-amount-display').classList.remove('hidden');
 }
 
 document.getElementById('donation-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    
+
     if (selectedAmount < 10000) {
         alert('Please select or enter a donation amount (minimum Rp 10.000)');
         return;
@@ -225,14 +225,14 @@ document.getElementById('donation-form').addEventListener('submit', function(e) 
 
     const submitButton = document.getElementById('pay-button');
     const originalText = submitButton.textContent;
-    
+
     submitButton.disabled = true;
     submitButton.textContent = 'Processing...';
-    
+
     const formData = new FormData(this);
     formData.append('campaign_id', {{ $campaign->id }});
     formData.append('amount', selectedAmount);
-    
+
     // ✅ MOCK PAYMENT - Direct submission
     fetch('{{ route('donations.store') }}', {
         method: 'POST',
@@ -250,7 +250,7 @@ document.getElementById('donation-form').addEventListener('submit', function(e) 
             submitButton.textContent = originalText;
             return;
         }
-        
+
         // ✅ Direct redirect to success page (no payment popup!)
         if (data.success) {
             window.location.href = '{{ url('/donations') }}/' + data.donation_id + '/success';

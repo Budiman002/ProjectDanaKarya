@@ -27,7 +27,7 @@
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Amount</span>
-                            <span class="font-bold text-[#2D7A67] text-xl">Rp {{ number_format($donation->amount, 0, ',', '.') }}</span>
+                            <span class="font-bold text-[#1A7332] text-xl">Rp {{ number_format($donation->amount, 0, ',', '.') }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Status</span>
@@ -73,7 +73,7 @@
 
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-3 pt-4">
-                    <a href="{{ route('campaigns.show', $donation->campaign->slug) }}" class="flex-1 px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white text-center font-semibold rounded-lg transition">
+                    <a href="{{ route('campaigns.show', $donation->campaign->slug) }}" class="flex-1 px-6 py-3 bg-[#1A7332] hover:bg-[#1A5647] text-white text-center font-semibold rounded-lg transition">
                         View Campaign
                     </a>
                     <a href="{{ route('campaigns.index') }}" class="flex-1 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 text-center font-semibold rounded-lg transition">

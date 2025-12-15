@@ -9,7 +9,7 @@
             <select
                 name="campaign_id"
                 id="campaign_id"
-                class="flex-1 max-w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
+                class="flex-1 max-w-md px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
                 onchange="this.form.submit()"
             >
                 <option value="">All Campaigns</option>
@@ -129,8 +129,8 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="w-10 h-10 bg-[#7DD3C0] rounded-full flex items-center justify-center mr-3">
-                                            <span class="text-white font-bold">{{ substr($donor->user->name, 0, 1) }}</span>
+                                        <div class="w-10 h-10 bg-[#F0B74C] rounded-full flex items-center justify-center mr-3">
+                                            <span class="text-white text-sm font-bold">{{ strtoupper(substr($donation->user->name, 0, 1)) }}</span>
                                         </div>
                                         <div>
                                             <div class="text-sm font-medium text-gray-900">{{ $donor->user->name }}</div>

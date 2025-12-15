@@ -11,7 +11,7 @@
                     @if($campaign->image)
                         <img src="{{ asset($campaign->image) }}" alt="{{ $campaign->title }}" class="w-full h-96 object-cover">
                     @else
-                        <div class="w-full h-96 bg-gradient-to-br from-[#2D7A67] to-[#7DD3C0] flex items-center justify-center">
+                        <div class="w-full h-96 bg-gradient-to-br from-[#1A7332] to-[#F0B74C] flex items-center justify-center">
                             <span class="text-white text-6xl font-bold">{{ substr($campaign->title, 0, 1) }}</span>
                         </div>
                     @endif
@@ -58,7 +58,7 @@
                 @if($campaign->faq_goal || $campaign->faq_fund_usage || $campaign->faq_timeline || $campaign->faq_custom_1_question || $campaign->faq_custom_2_question)
                 <div class="bg-white rounded-lg shadow-md p-6 mb-6">
                     <h2 class="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-                    
+
                     <div class="space-y-4">
                         @if($campaign->faq_goal)
                         <details class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
@@ -69,7 +69,7 @@
                             <p class="mt-3 text-gray-700 leading-relaxed pl-6">{{ $campaign->faq_goal }}</p>
                         </details>
                         @endif
-                        
+
                         @if($campaign->faq_fund_usage)
                         <details class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
                             <summary class="font-semibold text-gray-900 cursor-pointer flex items-center gap-2">
@@ -79,7 +79,7 @@
                             <p class="mt-3 text-gray-700 leading-relaxed pl-6">{{ $campaign->faq_fund_usage }}</p>
                         </details>
                         @endif
-                        
+
                         @if($campaign->faq_timeline)
                         <details class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
                             <summary class="font-semibold text-gray-900 cursor-pointer flex items-center gap-2">
@@ -89,7 +89,7 @@
                             <p class="mt-3 text-gray-700 leading-relaxed pl-6">{{ $campaign->faq_timeline }}</p>
                         </details>
                         @endif
-                        
+
                         @if($campaign->faq_custom_1_question)
                         <details class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
                             <summary class="font-semibold text-gray-900 cursor-pointer flex items-center gap-2">
@@ -99,7 +99,7 @@
                             <p class="mt-3 text-gray-700 leading-relaxed pl-6">{{ $campaign->faq_custom_1_answer }}</p>
                         </details>
                         @endif
-                        
+
                         @if($campaign->faq_custom_2_question)
                         <details class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
                             <summary class="font-semibold text-gray-900 cursor-pointer flex items-center gap-2">
@@ -184,8 +184,8 @@
                             @foreach($campaign->donations->take(10) as $donation)
                                 <div class="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 bg-[#7DD3C0] rounded-full flex items-center justify-center">
-                                            <span class="text-white font-bold">{{ substr($donation->user->name, 0, 1) }}</span>
+                                        <div class="w-10 h-10 bg-[#F0B74C] rounded-full flex items-center justify-center">
+                                            <span class="text-white text-sm font-bold">{{ strtoupper(substr($donation->user->name, 0, 1)) }}</span>
                                         </div>
                                         <div>
                                             <p class="font-semibold text-gray-900">{{ $donation->user->name }}</p>
@@ -193,7 +193,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <p class="font-bold text-[#2D7A67]">Rp {{ number_format($donation->amount, 0, ',', '.') }}</p>
+                                        <p class="font-bold text-[#1A7332]">Rp {{ number_format($donation->amount, 0, ',', '.') }}</p>
                                     </div>
                                 </div>
                             @endforeach
@@ -218,8 +218,8 @@
                 <div class="bg-white rounded-lg shadow-md p-6 sticky top-24">
                     <!-- Progress -->
                     @php
-                        $percentage = $campaign->target_amount > 0 
-                            ? min(($campaign->current_amount / $campaign->target_amount) * 100, 100) 
+                        $percentage = $campaign->target_amount > 0
+                            ? min(($campaign->current_amount / $campaign->target_amount) * 100, 100)
                             : 0;
                     @endphp
 
@@ -228,9 +228,9 @@
                             <p class="text-3xl font-bold text-gray-900">Rp {{ number_format($campaign->current_amount, 0, ',', '.') }}</p>
                         </div>
                         <p class="text-gray-600 mb-4">raised of Rp {{ number_format($campaign->target_amount, 0, ',', '.') }} goal</p>
-                        
+
                         <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
-                            <div class="bg-[#2D7A67] h-3 rounded-full transition-all" style="width: {{ $percentage }}%"></div>
+                            <div class="bg-[#1A7332] h-3 rounded-full transition-all" style="width: {{ $percentage }}%"></div>
                         </div>
                         <p class="text-sm text-gray-600">{{ number_format($percentage, 1) }}% funded</p>
                     </div>

@@ -12,7 +12,7 @@
 <p>We're excited to have you as part of our community where dreams become reality through collective support.</p>
 
 <div class="info-box">
-    <h3 style="margin-top: 0; color: #2D7A67;">What You Can Do on DanaKarya:</h3>
+    <h3 style="margin-top: 0; color: #1A7332;">What You Can Do on DanaKarya:</h3>
     <ul style="margin: 10px 0; padding-left: 20px;">
         <li><strong>Support Campaigns:</strong> Discover and back amazing projects from Indonesian entrepreneurs</li>
         <li><strong>Create Campaigns:</strong> Launch your own fundraising campaign to grow your business</li>
@@ -30,7 +30,7 @@
     <li>Have a business idea? Create your own campaign and start fundraising!</li>
 </ul>
 
-<p>If you have any questions, our support team is always here to help. Check out our <a href="{{ url('/how-it-works') }}" style="color: #2D7A67;">How It Works</a> page to learn more.</p>
+<p>If you have any questions, our support team is always here to help. Check out our <a href="{{ url('/how-it-works') }}" style="color: #1A7332;">How It Works</a> page to learn more.</p>
 
 <p>Let's make great things happen together!</p>
 

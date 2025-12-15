@@ -10,7 +10,7 @@
 </head>
 <body class="font-sans antialiased">
     <!-- Navbar -->
-    <nav class="bg-[#7DD3C0] shadow-sm">
+    <nav class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
@@ -22,10 +22,10 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-white hover:text-gray-100 transition">Home</a>
-                    <a href="/about" class="text-white hover:text-gray-100 transition">About</a>
-                    <a href="/campaigns" class="text-white hover:text-gray-100 transition">Donation List</a>
-                    <a href="/contact" class="text-white hover:text-gray-100 transition">Contact Us</a>
+                    <a href="/" class="text-gray-700 hover:text-gray-900 transition font-medium">Home</a>
+                    <a href="/about" class="text-gray-700 hover:text-gray-900 transition font-medium">About</a>
+                    <a href="/campaigns" class="text-gray-700 hover:text-gray-900 transition font-medium">Donation List</a>
+                    <a href="/contact" class="text-gray-700 hover:text-gray-900 transition font-medium">Contact Us</a>
                 </div>
 
                 <!-- Right Side: Auth Links -->
@@ -35,7 +35,7 @@
                         <div class="relative" x-data="{ open: false }">
                             <button @click="open = !open" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/20 transition">
                                 <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                                    <span class="text-[#7DD3C0] font-bold text-sm">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                                    <span class="text-[#F0B74C] font-bold text-sm">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
                                 </div>
                                 <span class="text-white font-medium">{{ Auth::user()->name }}</span>
                                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,8 +72,8 @@
                         </div>
                     @else
                         <!-- Not Logged In -->
-                        <a href="{{ route('login') }}" class="text-white hover:text-gray-100 transition font-medium">Sign In</a>
-                        <a href="/campaigns" class="px-6 py-2 bg-white text-[#7DD3C0] font-semibold rounded-lg hover:bg-gray-100 transition">
+                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-gray-900 transition font-medium">Sign In</a>
+                        <a href="/campaigns" class="px-6 py-2 bg-[#F0B74C] text-white font-semibold rounded-lg hover:bg-[#E0A73C] transition">
                             Start Funding
                         </a>
                     @endauth
@@ -91,17 +91,24 @@
         </div>
     </nav>
 
-    <!-- Main Content - Split Screen -->
-    <div class="min-h-screen flex">
-        <!-- Left Side - Image -->
-        <div class="hidden lg:flex lg:w-1/2 relative">
-            <img src="{{ asset('images/AuthBackground.png') }}" alt="Background" class="absolute inset-0 w-full h-full object-cover">
-        </div>
+    <!-- Main Content - Centered Container with Background -->
+    <div class="min-h-screen flex items-center justify-center p-2 md:p-4" style="background-image: url('{{ asset('images/LoginRegisBackground.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <!-- Center Container -->
+        <div class="w-full max-w-[90rem] bg-white rounded-3xl shadow-2xl overflow-hidden">
+            <div class="flex flex-col lg:flex-row min-h-[600px]">
+                <!-- Left Side - AuthBackground Image in Container -->
+                <div class="lg:w-3/5 p-8 lg:p-10 flex items-center justify-center bg-gray-50">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <img src="{{ asset('images/AuthBackground.png') }}" alt="Auth Background" class="w-full h-full object-contain rounded-2xl shadow-lg">
+                    </div>
+                </div>
 
-        <!-- Right Side - Form -->
-        <div class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-[#B8E6D5]">
-            <div class="w-full max-w-md">
-                @yield('content')
+                <!-- Right Side - Form -->
+                <div class="lg:w-2/5 p-12 lg:p-16 flex items-center justify-center">
+                    <div class="w-full max-w-lg">
+                        @yield('content')
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="mb-6">
-    <div class="bg-gradient-to-r from-[#2D7A67] to-[#1A5647] text-white rounded-lg p-8 mb-6">
+    <div class="bg-gradient-to-r from-[#1A7332] to-[#1A5647] text-white rounded-lg p-8 mb-6">
         <h2 class="text-2xl font-bold mb-2">Welcome back, {{ Auth::user()->name }}! 👋</h2>
         <p class="text-gray-100">Manage your campaigns and track their progress</p>
     </div>
@@ -69,7 +69,7 @@
     <div class="bg-white rounded-lg shadow p-6 mb-6">
         <div class="flex items-center justify-between mb-6">
             <h2 class="text-xl font-bold text-gray-900">Analytics Overview</h2>
-            <a href="{{ route('creator.analytics') }}" class="text-[#2D7A67] hover:text-[#1A5647] font-semibold text-sm">
+            <a href="{{ route('creator.analytics') }}" class="text-[#1A7332] hover:text-[#1A5647] font-semibold text-sm">
                 View All Analytics →
             </a>
         </div>
@@ -83,7 +83,7 @@
         <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-xl font-bold text-gray-900">Recent Campaigns</h2>
-                <a href="{{ route('creator.campaigns.index') }}" class="text-[#2D7A67] hover:text-[#1A5647] font-semibold text-sm">
+                <a href="{{ route('creator.campaigns.index') }}" class="text-[#1A7332] hover:text-[#1A5647] font-semibold text-sm">
                     View All →
                 </a>
             </div>
@@ -95,7 +95,7 @@
                             @if($campaign->image)
                                 <img src="{{ asset($campaign->image) }}" alt="{{ $campaign->title }}" class="w-20 h-20 object-cover rounded-lg">
                             @else
-                                <div class="w-20 h-20 bg-gradient-to-br from-[#2D7A67] to-[#7DD3C0] rounded-lg flex items-center justify-center">
+                                <div class="w-20 h-20 bg-gradient-to-br from-[#1A7332] to-[#F0B74C] rounded-lg flex items-center justify-center">
                                     <span class="text-white text-2xl font-bold">{{ substr($campaign->title, 0, 1) }}</span>
                                 </div>
                             @endif
@@ -122,7 +122,7 @@
 
                                 <div class="mb-2">
                                     <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="bg-[#2D7A67] h-2 rounded-full" style="width: {{ $percentage }}%"></div>
+                                        <div class="bg-[#1A7332] h-2 rounded-full" style="width: {{ $percentage }}%"></div>
                                     </div>
                                 </div>
 
@@ -141,7 +141,7 @@
                     </svg>
                     <h3 class="text-lg font-semibold text-gray-900 mb-2">No campaigns yet</h3>
                     <p class="text-gray-600 mb-4">Create your first campaign to start raising funds</p>
-                    <a href="#" class="inline-block px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
+                    <a href="#" class="inline-block px-6 py-3 bg-[#1A7332] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
                         Create Campaign (Coming Soon)
                     </a>
                 </div>
@@ -151,15 +151,15 @@
         <div class="bg-white rounded-lg shadow p-6">
             <h2 class="text-xl font-bold text-gray-900 mb-6">Quick Actions</h2>
             <div class="space-y-3">
-                <a href="{{ route('creator.campaigns.index') }}" class="block p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition">
+                <a href="{{ route('creator.campaigns.index') }}" class="block p-4 border-2 border-gray-200 rounded-lg hover:border-[#1A7332] transition">
                     <h3 class="font-semibold text-gray-900 mb-1">My Campaigns</h3>
                     <p class="text-sm text-gray-600">View and manage all campaigns</p>
                 </a>
-                <a href="{{ route('creator.campaigns.create') }}" class="block p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition">
+                <a href="{{ route('creator.campaigns.create') }}" class="block p-4 border-2 border-gray-200 rounded-lg hover:border-[#1A7332] transition">
                 <h3 class="font-semibold text-gray-900 mb-1">Create Campaign</h3>
                 <p class="text-sm text-gray-600">Start a new fundraising campaign</p>
                 </a>
-                <a href="{{ route('creator.analytics') }}" class="block p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition">
+                <a href="{{ route('creator.analytics') }}" class="block p-4 border-2 border-gray-200 rounded-lg hover:border-[#1A7332] transition">
                     <h3 class="font-semibold text-gray-900 mb-1">Analytics</h3>
                     <p class="text-sm text-gray-600">View detailed campaign analytics</p>
                 </a>
