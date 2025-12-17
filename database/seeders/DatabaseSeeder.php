@@ -43,14 +43,14 @@ class DatabaseSeeder extends Seeder
 
         // Create Categories
         $categories = [
-            ['name' => 'UMKM', 'description' => 'Usaha Mikro, Kecil dan Menengah', 'icon' => '🏪'],
-            ['name' => 'Technology', 'description' => 'Tech and innovation projects', 'icon' => '💻'],
-            ['name' => 'Education', 'description' => 'Educational initiatives', 'icon' => '📚'],
-            ['name' => 'Health', 'description' => 'Healthcare and wellness', 'icon' => '🏥'],
-            ['name' => 'Environment', 'description' => 'Environmental conservation', 'icon' => '🌱'],
-            ['name' => 'Social', 'description' => 'Social impact projects', 'icon' => '🤝'],
-            ['name' => 'Arts', 'description' => 'Creative and artistic projects', 'icon' => '🎨'],
-            ['name' => 'Art & Culture', 'description' => 'Seni dan Budaya Indonesia', 'icon' => '🎭'],
+            ['name' => 'UMKM', 'description' => 'Usaha Mikro, Kecil dan Menengah', 'icon' => '🏪', 'status' => 'active'],
+            ['name' => 'Technology', 'description' => 'Tech and innovation projects', 'icon' => '💻', 'status' => 'active'],
+            ['name' => 'Education', 'description' => 'Educational initiatives', 'icon' => '📚', 'status' => 'active'],
+            ['name' => 'Health', 'description' => 'Healthcare and wellness', 'icon' => '🏥', 'status' => 'active'],
+            ['name' => 'Environment', 'description' => 'Environmental conservation', 'icon' => '🌱', 'status' => 'active'],
+            ['name' => 'Social', 'description' => 'Social impact projects', 'icon' => '🤝', 'status' => 'active'],
+            ['name' => 'Arts', 'description' => 'Creative and artistic projects', 'icon' => '🎨', 'status' => 'active'],
+            ['name' => 'Art & Culture', 'description' => 'Seni dan Budaya Indonesia', 'icon' => '🎭', 'status' => 'active'],
         ];
 
         foreach ($categories as $category) {
