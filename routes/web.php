@@ -122,7 +122,7 @@ Route::middleware(['auth', 'creator'])->prefix('creator')->name('creator.')->gro
 // Backer Routes
 Route::middleware(['auth', 'backer'])->prefix('backer')->name('backer.')->group(function () {
     Route::get('/dashboard', function () {
-        return view('welcome', ['title' => 'Backer Dashboard']);
+        return view('backer.dashboard', ['title' => 'My Dashboard']);
     })->name('dashboard');
 });
 
