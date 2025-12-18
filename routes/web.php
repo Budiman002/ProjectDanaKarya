@@ -25,11 +25,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
-    
+
     Route::get('/forgot-password', function () {
         return view('auth.forgot-password', ['title' => 'Forgot Password']);
     })->name('password.request');
-    
+
     Route::post('/forgot-password', function () {
         return back()->with('status', 'Password reset link sent! (Placeholder - email not actually sent)');
     })->name('password.email');
@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', function () {
         $user = Auth::user();
-        
+
         if ($user->isAdmin()) {
             return redirect()->route('admin.dashboard');
         } elseif ($user->isCreator()) {
@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile', [AuthController::class, 'updateProfile'])->name('profile.update');
     Route::get('/settings', [AuthController::class, 'showSettings'])->name('settings');
     Route::put('/settings/password', [AuthController::class, 'changePassword'])->name('password.change');
-    
+
     Route::get('/notifications', [\App\Http\Controllers\NotificationController::class, 'index'])->name('notifications');
     Route::post('/notifications/{id}/read', [\App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.read');
     Route::post('/notifications/read-all', [\App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('notifications.read-all');
@@ -71,7 +71,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         $pendingCampaigns = \App\Models\Campaign::where('status', 'pending')->count();
         $activeCampaigns = \App\Models\Campaign::where('status', 'active')->count();
         $totalUsers = \App\Models\User::count();
-        
+
         return view('admin.dashboard', [
             'title' => 'Admin Dashboard',
             'subtitle' => 'Platform overview',
@@ -81,7 +81,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
             'totalUsers' => $totalUsers,
         ]);
     })->name('dashboard');
-    
+
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('campaigns', \App\Http\Controllers\Admin\CampaignController::class)->except(['create', 'store']);
     Route::post('campaigns/{id}/approve', [\App\Http\Controllers\Admin\CampaignController::class, 'approve'])->name('campaigns.approve');

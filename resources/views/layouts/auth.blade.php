@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? 'Auth' }} - DanaKarya</title>
     <!-- Tailwind CSS & Alpine.js via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -94,18 +98,18 @@
     <!-- Main Content - Centered Container with Background -->
     <div class="min-h-screen flex items-center justify-center p-2 md:p-4" style="background-image: url('{{ asset('images/LoginRegisBackground.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <!-- Center Container -->
-        <div class="w-full max-w-[90rem] bg-white rounded-3xl shadow-2xl overflow-hidden">
-            <div class="flex flex-col lg:flex-row min-h-[600px]">
+        <div class="w-full max-w-6xl bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <div class="flex flex-col lg:flex-row min-h-[500px]">
                 <!-- Left Side - AuthBackground Image in Container -->
-                <div class="lg:w-3/5 p-8 lg:p-10 flex items-center justify-center bg-gray-50">
+                <div class="lg:w-3/5 p-6 lg:p-8 flex items-center justify-center bg-gray-50">
                     <div class="w-full h-full flex items-center justify-center">
-                        <img src="{{ asset('images/AuthBackground.png') }}" alt="Auth Background" class="w-full h-full object-contain rounded-2xl shadow-lg">
+                        <img src="{{ asset('images/AuthBackground.png') }}" alt="Auth Background" class="w-full h-full object-contain rounded-xl shadow-lg">
                     </div>
                 </div>
 
                 <!-- Right Side - Form -->
-                <div class="lg:w-2/5 p-12 lg:p-16 flex items-center justify-center">
-                    <div class="w-full max-w-lg">
+                <div class="lg:w-2/5 p-8 lg:p-10 flex items-center justify-center">
+                    <div class="w-full max-w-md">
                         @yield('content')
                     </div>
                 </div>

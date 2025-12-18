@@ -167,22 +167,22 @@
                 <!-- Social Media -->
                 <div class="mt-8">
                     <h3 class="font-semibold text-gray-900 mb-4">{{ __('Follow Us') }}</h3>
-                    <div class="inline-flex gap-3 bg-[#F0B74C] rounded-full p-2">
+                    <div class="flex gap-4">
                         <!-- Facebook -->
-                        <a href="#" class="w-12 h-12 bg-white rounded-full shadow-md hover:shadow-lg flex items-center justify-center transition group p-2">
-                            <img src="{{ asset('images/SocialMediaLogo/Facebook.png') }}" alt="Facebook" class="w-full h-full object-contain">
+                        <a href="#" class="w-14 h-14 bg-[#F0B74C] rounded-full shadow-lg hover:shadow-xl hover:scale-110 flex items-center justify-center transition-all duration-300 group p-3">
+                            <img src="{{ asset('images/SocialMediaLogo/Facebook.png') }}" alt="Facebook" class="w-full h-full object-contain brightness-0 invert">
                         </a>
                         <!-- Twitter/X -->
-                        <a href="#" class="w-12 h-12 bg-white rounded-full shadow-md hover:shadow-lg flex items-center justify-center transition group p-2">
-                            <img src="{{ asset('images/SocialMediaLogo/X.png') }}" alt="X (Twitter)" class="w-full h-full object-contain">
+                        <a href="#" class="w-14 h-14 bg-[#F0B74C] rounded-full shadow-lg hover:shadow-xl hover:scale-110 flex items-center justify-center transition-all duration-300 group p-3">
+                            <img src="{{ asset('images/SocialMediaLogo/X.png') }}" alt="X (Twitter)" class="w-full h-full object-contain brightness-0 invert">
                         </a>
                         <!-- Instagram -->
-                        <a href="#" class="w-12 h-12 bg-white rounded-full shadow-md hover:shadow-lg flex items-center justify-center transition group p-2">
-                            <img src="{{ asset('images/SocialMediaLogo/Instagram.png') }}" alt="Instagram" class="w-full h-full object-contain">
+                        <a href="#" class="w-14 h-14 bg-[#F0B74C] rounded-full shadow-lg hover:shadow-xl hover:scale-110 flex items-center justify-center transition-all duration-300 group p-3">
+                            <img src="{{ asset('images/SocialMediaLogo/Instagram.png') }}" alt="Instagram" class="w-full h-full object-contain brightness-0 invert">
                         </a>
                         <!-- LinkedIn -->
-                        <a href="#" class="w-12 h-12 bg-white rounded-full shadow-md hover:shadow-lg flex items-center justify-center transition group p-2">
-                            <img src="{{ asset('images/SocialMediaLogo/Linkedin.png') }}" alt="LinkedIn" class="w-full h-full object-contain">
+                        <a href="#" class="w-14 h-14 bg-[#F0B74C] rounded-full shadow-lg hover:shadow-xl hover:scale-110 flex items-center justify-center transition-all duration-300 group p-3">
+                            <img src="{{ asset('images/SocialMediaLogo/Linkedin.png') }}" alt="LinkedIn" class="w-full h-full object-contain brightness-0 invert">
                         </a>
                     </div>
                 </div>

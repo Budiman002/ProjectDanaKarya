@@ -16,24 +16,24 @@
 
             <!-- Text Content Overlay -->
             <div class="absolute inset-0 flex items-center justify-end z-10">
-                <div class="max-w-3xl px-6 sm:px-10 md:px-16 mr-0 md:mr-[10%]">
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 leading-tight drop-shadow-lg text-white text-left">
+                <div class="max-w-2xl px-6 sm:px-10 md:px-16 mr-0 md:mr-[10%]">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight drop-shadow-lg text-white text-left">
                         {{ __('Wujudkan Impian') }}<br>
                         <span class="text-[#F5A623]">{{ __('UMKM Indonesia') }}</span>
                     </h1>
-                    <p class="text-lg sm:text-xl md:text-2xl text-gray-100 mb-8 md:mb-10 leading-relaxed drop-shadow-md text-left">
+                    <p class="text-base sm:text-lg md:text-xl text-gray-100 mb-6 md:mb-8 leading-relaxed drop-shadow-md text-left">
                         {{ __('Platform crowdfunding terpercaya untuk membantu UMKM Indonesia berkembang. Mari bersama membangun masa depan yang lebih cerah.') }}
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 md:gap-5 mb-8">
+                    <div class="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8">
                         @guest
-                            <a href="{{ route('register') }}" class="px-8 md:px-10 py-4 md:py-5 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg text-center text-base md:text-lg">
+                            <a href="{{ route('register') }}" class="px-6 md:px-8 py-3 md:py-3.5 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg text-center text-sm md:text-base">
                                 {{ __('Start Funding') }}
                             </a>
-                            <a href="{{ route('campaigns.index') }}" class="px-8 md:px-10 py-4 md:py-5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-lg transition border-2 border-white/30 text-center text-base md:text-lg">
+                            <a href="{{ route('campaigns.index') }}" class="px-6 md:px-8 py-3 md:py-3.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-lg transition border-2 border-white/30 text-center text-sm md:text-base">
                                 {{ __('Browse Campaigns') }}
                             </a>
                         @else
-                            <a href="{{ route('campaigns.index') }}" class="px-8 md:px-10 py-4 md:py-5 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg text-center text-base md:text-lg">
+                            <a href="{{ route('campaigns.index') }}" class="px-6 md:px-8 py-3 md:py-3.5 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg text-center text-sm md:text-base">
                                 {{ __('Browse Campaigns') }}
                             </a>
                         @endguest
@@ -275,11 +275,31 @@
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
             @foreach($categories->take(4) as $category)
+                @php
+                    // Map category names to image files
+                    $categoryImages = [
+                        'UMKM' => 'UMKM.jpg',
+                        'Technology' => 'Technology.jpg',
+                        'Education' => 'Education.jpg',
+                        'Health' => 'Health.jpg',
+                        'Environment' => 'Environment.jpg',
+                        'Social' => 'Social.jpg',
+                        'Arts' => 'SeniBudaya.jpg',
+                        'Art & Culture' => 'SeniBudaya.jpg',                        'Arts and Culture' => 'SeniBudaya.jpg',                    ];
+                    $categoryImage = $categoryImages[$category->name] ?? 'UMKM.jpg';
+                @endphp
                 <a href="{{ route('campaigns.index', ['category' => $category->slug]) }}" class="group">
-                    <div class="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-all hover:-translate-y-1">
-                        <div class="text-4xl mb-3">{{ $category->icon }}</div>
-                        <h3 class="font-semibold text-gray-900 group-hover:text-[#1A7332] transition">{{ __($category->name) }}</h3>
-                        <p class="text-xs text-gray-600 mt-1">{{ $category->campaigns_count }} campaigns</p>
+                    <div class="relative rounded-xl overflow-hidden h-48 hover:shadow-lg transition-all hover:-translate-y-1">
+                        <!-- Background Image with Overlay -->
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/Category/' . $categoryImage) }}');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent group-hover:from-[#1A7332]/80 group-hover:via-[#1A7332]/50 transition-all"></div>
+
+                        <!-- Content -->
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <div class="text-3xl mb-2">{{ $category->icon }}</div>
+                            <h3 class="font-bold text-lg mb-1">{{ __($category->name) }}</h3>
+                            <p class="text-xs text-white/90">{{ $category->campaigns_count }} campaigns</p>
+                        </div>
                     </div>
                 </a>
             @endforeach
@@ -287,11 +307,33 @@
 
         <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             @foreach($categories->skip(4) as $category)
+                @php
+                    // Map category names to image files
+                    $categoryImages = [
+                        'UMKM' => 'UMKM.jpg',
+                        'Technology' => 'Technology.jpg',
+                        'Education' => 'Education.jpg',
+                        'Health' => 'Health.jpg',
+                        'Environment' => 'Environment.jpg',
+                        'Social' => 'Social.jpg',
+                        'Arts' => 'SeniBudaya.jpg',
+                        'Art & Culture' => 'SeniBudaya.jpg',
+                        'Arts and Culture' => 'SeniBudaya.jpg',
+                    ];
+                    $categoryImage = $categoryImages[$category->name] ?? 'UMKM.jpg';
+                @endphp
                 <a href="{{ route('campaigns.index', ['category' => $category->slug]) }}" class="group">
-                    <div class="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-all hover:-translate-y-1">
-                        <div class="text-4xl mb-3">{{ $category->icon }}</div>
-                        <h3 class="font-semibold text-gray-900 group-hover:text-[#1A7332] transition">{{ __($category->name) }}</h3>
-                        <p class="text-xs text-gray-600 mt-1">{{ $category->campaigns_count }} campaigns</p>
+                    <div class="relative rounded-xl overflow-hidden h-48 hover:shadow-lg transition-all hover:-translate-y-1">
+                        <!-- Background Image with Overlay -->
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/Category/' . $categoryImage) }}');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent group-hover:from-[#1A7332]/80 group-hover:via-[#1A7332]/50 transition-all"></div>
+
+                        <!-- Content -->
+                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
+                            <div class="text-3xl mb-2">{{ $category->icon }}</div>
+                            <h3 class="font-bold text-lg mb-1">{{ __($category->name) }}</h3>
+                            <p class="text-xs text-white/90">{{ $category->campaigns_count }} campaigns</p>
+                        </div>
                     </div>
                 </a>
             @endforeach
