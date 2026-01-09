@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Donation;
 use App\Models\Campaign;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Midtrans\Config;
 use Midtrans\Notification;
@@ -29,7 +30,7 @@ class MidtransWebhookController extends Controller
 
             // Extract donation ID from order_id (format: DONATION-{id}-{timestamp})
             preg_match('/DONATION-(\d+)-/', $orderId, $matches);
-            
+
             if (!isset($matches[1])) {
                 return response()->json(['message' => 'Invalid order ID format'], 400);
             }
@@ -66,8 +67,13 @@ class MidtransWebhookController extends Controller
 
     private function updateDonationSuccess($donation)
     {
+        // Only process if not already confirmed
+        if ($donation->status === 'confirmed') {
+            return;
+        }
+
         // Update donation status
-        $donation->update(['status' => 'paid']);
+        $donation->update(['status' => 'confirmed']);
 
         // Update campaign current_amount
         $campaign = Campaign::find($donation->campaign_id);
@@ -75,9 +81,16 @@ class MidtransWebhookController extends Controller
             $campaign->increment('current_amount', $donation->amount);
 
             // Check if campaign reached target
-            if ($campaign->current_amount >= $campaign->target_amount) {
+            if ($campaign->current_amount >= $campaign->target_amount && $campaign->status === 'active') {
                 $campaign->update(['status' => 'funded']);
             }
         }
+
+        // Load relationships for notifications
+        $donation->load(['campaign.user', 'user']);
+
+        // Send notifications
+        NotificationService::newDonation($donation);
+        NotificationService::donationSuccess($donation);
     }
 }

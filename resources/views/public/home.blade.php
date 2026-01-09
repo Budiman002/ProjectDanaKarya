@@ -284,8 +284,8 @@
                         'Health' => 'Health.jpg',
                         'Environment' => 'Environment.jpg',
                         'Social' => 'Social.jpg',
-                        'Arts' => 'SeniBudaya.jpg',
-                        'Art & Culture' => 'SeniBudaya.jpg',                        'Arts and Culture' => 'SeniBudaya.jpg',                    ];
+                        'Art & Culture' => 'SeniBudaya.jpg',
+                    ];
                     $categoryImage = $categoryImages[$category->name] ?? 'UMKM.jpg';
                 @endphp
                 <a href="{{ route('campaigns.index', ['category' => $category->slug]) }}" class="group">
@@ -316,9 +316,7 @@
                         'Health' => 'Health.jpg',
                         'Environment' => 'Environment.jpg',
                         'Social' => 'Social.jpg',
-                        'Arts' => 'SeniBudaya.jpg',
                         'Art & Culture' => 'SeniBudaya.jpg',
-                        'Arts and Culture' => 'SeniBudaya.jpg',
                     ];
                     $categoryImage = $categoryImages[$category->name] ?? 'UMKM.jpg';
                 @endphp

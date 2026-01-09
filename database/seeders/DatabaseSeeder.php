@@ -49,7 +49,6 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Health', 'description' => 'Healthcare and wellness', 'icon' => '🏥', 'status' => 'active'],
             ['name' => 'Environment', 'description' => 'Environmental conservation', 'icon' => '🌱', 'status' => 'active'],
             ['name' => 'Social', 'description' => 'Social impact projects', 'icon' => '🤝', 'status' => 'active'],
-            ['name' => 'Arts', 'description' => 'Creative and artistic projects', 'icon' => '🎨', 'status' => 'active'],
             ['name' => 'Art & Culture', 'description' => 'Seni dan Budaya Indonesia', 'icon' => '🎭', 'status' => 'active'],
         ];
 
@@ -102,7 +101,7 @@ class DatabaseSeeder extends Seeder
         // Additional campaigns from your database
         $educationCategory = Category::where('name', 'Education')->first();
         $healthCategory = Category::where('name', 'Health')->first();
-        $artsCategory = Category::where('name', 'Seni & Budaya')->first();
+        $artsCategory = Category::where('name', 'Art & Culture')->first();
 
         if ($creator && $umkmCategory) {
             \App\Models\Campaign::firstOrCreate(

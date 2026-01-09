@@ -6,6 +6,8 @@ use App\Models\Campaign;
 use App\Models\Category;
 use App\Models\Donation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
 
 class PublicController extends Controller
 {
@@ -53,7 +55,13 @@ class PublicController extends Controller
             'subject' => ['required', 'string', 'max:255'],
             'message' => ['required', 'string', 'max:1000'],
         ]);
-        
-        return back()->with('success', 'Thank you for contacting us! We will get back to you soon.');
+
+        // Send email to danakaryaid@gmail.com
+        try {
+            Mail::to('danakaryaid@gmail.com')->send(new ContactMail($validated));
+            return back()->with('success', 'Thank you for contacting us! We will get back to you soon.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to send message. Please try again later.');
+        }
     }
 }
