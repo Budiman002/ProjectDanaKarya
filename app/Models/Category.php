@@ -15,13 +15,14 @@ class Category extends Model
         'slug',
         'description',
         'icon',
+        'image',
         'status',
     ];
 
     protected static function boot()
     {
         parent::boot();
-        
+
         static::creating(function ($category) {
             if (empty($category->slug)) {
                 $category->slug = Str::slug($category->name);

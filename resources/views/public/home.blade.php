@@ -275,23 +275,10 @@
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
             @foreach($categories->take(4) as $category)
-                @php
-                    // Map category names to image files
-                    $categoryImages = [
-                        'UMKM' => 'UMKM.jpg',
-                        'Technology' => 'Technology.jpg',
-                        'Education' => 'Education.jpg',
-                        'Health' => 'Health.jpg',
-                        'Environment' => 'Environment.jpg',
-                        'Social' => 'Social.jpg',
-                        'Art & Culture' => 'SeniBudaya.jpg',
-                    ];
-                    $categoryImage = $categoryImages[$category->name] ?? 'UMKM.jpg';
-                @endphp
                 <a href="{{ route('campaigns.index', ['category' => $category->slug]) }}" class="group">
                     <div class="relative rounded-xl overflow-hidden h-48 hover:shadow-lg transition-all hover:-translate-y-1">
                         <!-- Background Image with Overlay -->
-                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/Category/' . $categoryImage) }}');"></div>
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/Category/' . ($category->image ?? 'UMKM.jpg')) }}');"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent group-hover:from-[#1A7332]/80 group-hover:via-[#1A7332]/50 transition-all"></div>
 
                         <!-- Content -->
@@ -307,23 +294,10 @@
 
         <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             @foreach($categories->skip(4) as $category)
-                @php
-                    // Map category names to image files
-                    $categoryImages = [
-                        'UMKM' => 'UMKM.jpg',
-                        'Technology' => 'Technology.jpg',
-                        'Education' => 'Education.jpg',
-                        'Health' => 'Health.jpg',
-                        'Environment' => 'Environment.jpg',
-                        'Social' => 'Social.jpg',
-                        'Art & Culture' => 'SeniBudaya.jpg',
-                    ];
-                    $categoryImage = $categoryImages[$category->name] ?? 'UMKM.jpg';
-                @endphp
                 <a href="{{ route('campaigns.index', ['category' => $category->slug]) }}" class="group">
                     <div class="relative rounded-xl overflow-hidden h-48 hover:shadow-lg transition-all hover:-translate-y-1">
                         <!-- Background Image with Overlay -->
-                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/Category/' . $categoryImage) }}');"></div>
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/Category/' . ($category->image ?? 'UMKM.jpg')) }}');"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent group-hover:from-[#1A7332]/80 group-hover:via-[#1A7332]/50 transition-all"></div>
 
                         <!-- Content -->

@@ -247,7 +247,7 @@ document.getElementById('donation-form').addEventListener('submit', function(e) 
     formData.append('amount', selectedAmount);
 
     // Create Midtrans transaction
-    fetch('{{ route('donations.store') }}', {
+    fetch('/donations', {
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -268,10 +268,10 @@ document.getElementById('donation-form').addEventListener('submit', function(e) 
             // Open Midtrans Snap payment popup
             window.snap.pay(data.snap_token, {
                 onSuccess: function(result) {
-                    window.location.href = '{{ url('/donations') }}/' + data.donation_id + '/success';
+                    window.location.href = '/donations/' + data.donation_id + '/success';
                 },
                 onPending: function(result) {
-                    window.location.href = '{{ url('/donations') }}/' + data.donation_id + '/success';
+                    window.location.href = '/donations/' + data.donation_id + '/success';
                 },
                 onError: function(result) {
                     alert('Payment failed. Please try again.');
