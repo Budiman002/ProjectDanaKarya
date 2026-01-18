@@ -275,7 +275,7 @@
 
         @php
             $colors = [
-                'UMKM' => ['bg' => 'bg-orange-50', 'border' => 'border-orange-200', 'hover' => 'group-hover:border-orange-400', 'text' => 'text-orange-600'],
+                'UMKM' => ['bg' => 'bg-gray-50', 'border' => 'border-gray-200', 'hover' => 'group-hover:border-gray-400', 'text' => 'text-gray-700'],
                 'Technology' => ['bg' => 'bg-blue-50', 'border' => 'border-blue-200', 'hover' => 'group-hover:border-blue-400', 'text' => 'text-blue-600'],
                 'Education' => ['bg' => 'bg-purple-50', 'border' => 'border-purple-200', 'hover' => 'group-hover:border-purple-400', 'text' => 'text-purple-600'],
                 'Health' => ['bg' => 'bg-red-50', 'border' => 'border-red-200', 'hover' => 'group-hover:border-red-400', 'text' => 'text-red-600'],
