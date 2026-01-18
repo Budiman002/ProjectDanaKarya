@@ -58,6 +58,7 @@ class DonationController extends Controller
             'status' => 'confirmed',
             'payment_method' => 'bank_transfer',
             'message' => $validated['message'],
+            'transaction_code' => 'DN' . time() . rand(1000, 9999),
         ]);
 
         $campaign->increment('current_amount', $validated['amount']);
