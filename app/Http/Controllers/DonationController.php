@@ -37,9 +37,6 @@ class DonationController extends Controller
         $validated = $request->validate([
             'campaign_id' => ['required', 'exists:campaigns,id'],
             'amount' => ['required', 'numeric', 'min:10000'],
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'phone' => ['required', 'string', 'max:20'],
             'message' => ['nullable', 'string', 'max:500'],
         ]);
 
@@ -56,7 +53,7 @@ class DonationController extends Controller
             'campaign_id' => $validated['campaign_id'],
             'amount' => $validated['amount'],
             'status' => 'confirmed',
-            'payment_method' => 'bank_transfer',
+            'payment_method' => 'transfer_bank',
             'message' => $validated['message'],
             'transaction_code' => 'DN' . time() . rand(1000, 9999),
         ]);
