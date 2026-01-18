@@ -7,18 +7,18 @@ use App\Models\Donation;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Midtrans\Config;
-use Midtrans\Snap;
+// use Midtrans\Config;
+// use Midtrans\Snap;
 
 class DonationController extends Controller
 {
-    public function __construct()
-    {
-        Config::$serverKey = config('midtrans.server_key');
-        Config::$isProduction = config('midtrans.is_production');
-        Config::$isSanitized = config('midtrans.is_sanitized');
-        Config::$is3ds = config('midtrans.is_3ds');
-    }
+    // public function __construct()
+    // {
+    //     Config::$serverKey = config('midtrans.server_key');
+    //     Config::$isProduction = config('midtrans.is_production');
+    //     Config::$isSanitized = config('midtrans.is_sanitized');
+    //     Config::$is3ds = config('midtrans.is_3ds');
+    // }
 
     public function create($slug)
     {
@@ -56,7 +56,7 @@ class DonationController extends Controller
             'campaign_id' => $validated['campaign_id'],
             'amount' => $validated['amount'],
             'status' => 'confirmed',
-            'payment_method' => 'midtrans',
+            'payment_method' => 'bank_transfer',
             'message' => $validated['message'],
         ]);
 

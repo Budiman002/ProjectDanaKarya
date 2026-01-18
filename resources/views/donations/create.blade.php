@@ -145,7 +145,7 @@
                             >
                             Continue to Payment
                         </button>
-                    <p class="text-xs text-gray-500 text-center mt-3">You'll be redirected to Midtrans secure payment page</p>
+                    <p class="text-xs text-gray-500 text-center mt-3">Complete your donation securely</p>
                 </div>
             </form>
         </div>
