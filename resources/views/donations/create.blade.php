@@ -233,8 +233,7 @@ document.getElementById('donation-form').addEventListener('submit', function(e) 
     formData.append('campaign_id', {{ $campaign->id }});
     formData.append('amount', selectedAmount);
 
-    // ✅ MOCK PAYMENT - Direct submission
-    fetch('{{ route('donations.store') }}', {
+    fetch('/donations', {
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -251,9 +250,8 @@ document.getElementById('donation-form').addEventListener('submit', function(e) 
             return;
         }
 
-        // ✅ Direct redirect to success page (no payment popup!)
         if (data.success) {
-            window.location.href = '{{ url('/donations') }}/' + data.donation_id + '/success';
+            window.location.href = '/donations/' + data.donation_id + '/success';
         }
     })
     .catch(error => {
