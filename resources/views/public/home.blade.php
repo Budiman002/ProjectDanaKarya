@@ -266,73 +266,52 @@
 </section>
 
 <!-- Categories -->
-<section class="py-16 md:py-24 bg-gray-50">
+<section class="py-16 md:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('Browse by Category') }}</h2>
             <p class="text-lg text-gray-600">{{ __('Temukan campaign sesuai minat dan passion Anda') }}</p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
-            @foreach($categories->take(4) as $category)
-                @php
-                    // Map category names to image files
-                    $categoryImages = [
-                        'UMKM' => 'UMKM.jpg',
-                        'Technology' => 'Technology.jpg',
-                        'Education' => 'Education.jpg',
-                        'Health' => 'Health.jpg',
-                        'Environment' => 'Environment.jpg',
-                        'Social' => 'Social.jpg',
-                        'Arts' => 'SeniBudaya.jpg',
-                        'Art & Culture' => 'SeniBudaya.jpg',                        'Arts and Culture' => 'SeniBudaya.jpg',                    ];
-                    $categoryImage = $categoryImages[$category->name] ?? 'UMKM.jpg';
-                @endphp
-                <a href="{{ route('campaigns.index', ['category' => $category->slug]) }}" class="group">
-                    <div class="relative rounded-xl overflow-hidden h-48 hover:shadow-lg transition-all hover:-translate-y-1">
-                        <!-- Background Image with Overlay -->
-                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/Category/' . $categoryImage) }}');"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent group-hover:from-[#1A7332]/80 group-hover:via-[#1A7332]/50 transition-all"></div>
+        @php
+            $colors = [
+                'UMKM' => ['bg' => 'bg-orange-50', 'border' => 'border-orange-200', 'hover' => 'group-hover:border-orange-400', 'text' => 'text-orange-600'],
+                'Technology' => ['bg' => 'bg-blue-50', 'border' => 'border-blue-200', 'hover' => 'group-hover:border-blue-400', 'text' => 'text-blue-600'],
+                'Education' => ['bg' => 'bg-purple-50', 'border' => 'border-purple-200', 'hover' => 'group-hover:border-purple-400', 'text' => 'text-purple-600'],
+                'Health' => ['bg' => 'bg-red-50', 'border' => 'border-red-200', 'hover' => 'group-hover:border-red-400', 'text' => 'text-red-600'],
+                'Environment' => ['bg' => 'bg-green-50', 'border' => 'border-green-200', 'hover' => 'group-hover:border-green-400', 'text' => 'text-green-600'],
+                'Social' => ['bg' => 'bg-cyan-50', 'border' => 'border-cyan-200', 'hover' => 'group-hover:border-cyan-400', 'text' => 'text-cyan-600'],
+                'Arts' => ['bg' => 'bg-pink-50', 'border' => 'border-pink-200', 'hover' => 'group-hover:border-pink-400', 'text' => 'text-pink-600'],
+                'Art & Culture' => ['bg' => 'bg-pink-50', 'border' => 'border-pink-200', 'hover' => 'group-hover:border-pink-400', 'text' => 'text-pink-600'],
+                'Arts and Culture' => ['bg' => 'bg-pink-50', 'border' => 'border-pink-200', 'hover' => 'group-hover:border-pink-400', 'text' => 'text-pink-600'],
+            ];
+        @endphp
 
-                        <!-- Content -->
-                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
-                            <div class="text-3xl mb-2">{{ $category->icon }}</div>
-                            <h3 class="font-bold text-lg mb-1">{{ __($category->name) }}</h3>
-                            <p class="text-xs text-white/90">{{ $category->campaigns_count }} campaigns</p>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            @foreach($categories as $category)
+                @php
+                    $color = $colors[$category->name] ?? ['bg' => 'bg-gray-50', 'border' => 'border-gray-200', 'hover' => 'group-hover:border-gray-400', 'text' => 'text-gray-600'];
+                @endphp
+                <a href="{{ route('campaigns.index', ['category' => $category->slug]) }}"
+                   class="group relative rounded-2xl {{ $color['bg'] }} border-2 {{ $color['border'] }} {{ $color['hover'] }} p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+
+                    <div class="flex flex-col items-center text-center h-full">
+                        <div class="text-5xl md:text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                            {{ $category->icon }}
                         </div>
-                    </div>
-                </a>
-            @endforeach
-        </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            @foreach($categories->skip(4) as $category)
-                @php
-                    // Map category names to image files
-                    $categoryImages = [
-                        'UMKM' => 'UMKM.jpg',
-                        'Technology' => 'Technology.jpg',
-                        'Education' => 'Education.jpg',
-                        'Health' => 'Health.jpg',
-                        'Environment' => 'Environment.jpg',
-                        'Social' => 'Social.jpg',
-                        'Arts' => 'SeniBudaya.jpg',
-                        'Art & Culture' => 'SeniBudaya.jpg',
-                        'Arts and Culture' => 'SeniBudaya.jpg',
-                    ];
-                    $categoryImage = $categoryImages[$category->name] ?? 'UMKM.jpg';
-                @endphp
-                <a href="{{ route('campaigns.index', ['category' => $category->slug]) }}" class="group">
-                    <div class="relative rounded-xl overflow-hidden h-48 hover:shadow-lg transition-all hover:-translate-y-1">
-                        <!-- Background Image with Overlay -->
-                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/Category/' . $categoryImage) }}');"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent group-hover:from-[#1A7332]/80 group-hover:via-[#1A7332]/50 transition-all"></div>
+                        <h3 class="{{ $color['text'] }} font-bold text-lg md:text-xl mb-3">
+                            {{ __($category->name) }}
+                        </h3>
 
-                        <!-- Content -->
-                        <div class="relative h-full flex flex-col justify-end p-6 text-white">
-                            <div class="text-3xl mb-2">{{ $category->icon }}</div>
-                            <h3 class="font-bold text-lg mb-1">{{ __($category->name) }}</h3>
-                            <p class="text-xs text-white/90">{{ $category->campaigns_count }} campaigns</p>
+                        <div class="mt-auto">
+                            <span class="inline-flex items-center px-4 py-2 rounded-full bg-white shadow-sm {{ $color['text'] }} text-sm font-semibold border {{ $color['border'] }}">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+                                </svg>
+                                {{ $category->campaigns_count }} {{ __('campaigns') }}
+                            </span>
                         </div>
                     </div>
                 </a>
