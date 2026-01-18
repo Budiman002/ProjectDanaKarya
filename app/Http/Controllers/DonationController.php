@@ -25,7 +25,7 @@ class DonationController extends Controller
         $campaign = Campaign::where('slug', $slug)
             ->where('status', 'active')
             ->firstOrFail();
-
+        
         return view('donations.create', [
             'title' => 'Donate to ' . $campaign->title,
             'campaign' => $campaign,
@@ -51,69 +51,37 @@ class DonationController extends Controller
             ], 400);
         }
 
-        // Create donation with pending status
         $donation = Donation::create([
             'user_id' => Auth::id(),
             'campaign_id' => $validated['campaign_id'],
             'amount' => $validated['amount'],
-            'status' => 'pending',
+            'status' => 'confirmed',
             'payment_method' => 'midtrans',
             'message' => $validated['message'],
         ]);
 
-        // Create Midtrans transaction
-        $orderId = 'DONATION-' . $donation->id . '-' . time();
+        $campaign->increment('current_amount', $validated['amount']);
 
-        $transactionDetails = [
-            'order_id' => $orderId,
-            'gross_amount' => (int) $validated['amount'],
-        ];
-
-        $customerDetails = [
-            'first_name' => $validated['name'],
-            'email' => $validated['email'],
-            'phone' => $validated['phone'],
-        ];
-
-        $itemDetails = [
-            [
-                'id' => 'donation-' . $campaign->id,
-                'price' => (int) $validated['amount'],
-                'quantity' => 1,
-                'name' => 'Donation for: ' . substr($campaign->title, 0, 40),
-            ]
-        ];
-
-        $params = [
-            'transaction_details' => $transactionDetails,
-            'customer_details' => $customerDetails,
-            'item_details' => $itemDetails,
-            'enabled_payments' => ['credit_card', 'bca_va', 'bni_va', 'bri_va', 'mandiri_va', 'permata_va', 'other_va', 'gopay', 'shopeepay', 'qris'],
-        ];
-
-        try {
-            $snapToken = Snap::getSnapToken($params);
-
-            // Save snap token to donation
-            $donation->update(['snap_token' => $snapToken]);
-
-            return response()->json([
-                'success' => true,
-                'snap_token' => $snapToken,
-                'donation_id' => $donation->id,
-            ]);
-        } catch (\Exception $e) {
-            $donation->delete();
-            return response()->json([
-                'error' => 'Failed to create payment: ' . $e->getMessage()
-            ], 500);
+        if ($campaign->current_amount >= $campaign->target_amount) {
+            $campaign->update(['status' => 'funded']);
         }
+
+        $donation->load(['campaign.user', 'user']);
+
+        NotificationService::newDonation($donation);
+        NotificationService::donationSuccess($donation);
+
+        return response()->json([
+            'success' => true,
+            'donation_id' => $donation->id,
+            'message' => 'Donation successful!',
+        ]);
     }
 
     public function success($id)
     {
         $donation = Donation::with(['campaign', 'user'])->findOrFail($id);
-
+        
         return view('donations.success', [
             'title' => 'Thank You!',
             'donation' => $donation,

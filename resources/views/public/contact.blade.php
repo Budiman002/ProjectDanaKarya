@@ -20,16 +20,15 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ __('Send Us a Message') }}</h2>
 
                 <!-- Success Message -->
-                <div id="success-message" class="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg hidden">
-                    Thank you for contacting us! We will get back to you soon.
-                </div>
+                @if(session('success'))
+                    <div class="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
-                <!-- Error Message -->
-                <div id="error-message" class="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg hidden">
-                    Failed to send message. Please try again.
-                </div>
+                <form method="POST" action="{{ route('contact.submit') }}" class="space-y-6">
+                    @csrf
 
-                <form id="contact-form" class="space-y-6">
                     <!-- Name -->
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-900 mb-2">
@@ -39,9 +38,13 @@
                             type="text"
                             id="name"
                             name="name"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
+                            value="{{ old('name') }}"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('name') border-red-500 @enderror"
                             required
                         >
+                        @error('name')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Email -->
@@ -53,9 +56,13 @@
                             type="email"
                             id="email"
                             name="email"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
+                            value="{{ old('email') }}"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('email') border-red-500 @enderror"
                             required
                         >
+                        @error('email')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Subject -->
@@ -67,9 +74,13 @@
                             type="text"
                             id="subject"
                             name="subject"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
+                            value="{{ old('subject') }}"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('subject') border-red-500 @enderror"
                             required
                         >
+                        @error('subject')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Message -->
@@ -81,15 +92,17 @@
                             id="message"
                             name="message"
                             rows="6"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-[#1A7332] focus:border-transparent @error('message') border-red-500 @enderror"
                             required
-                        ></textarea>
+                        >{{ old('message') }}</textarea>
+                        @error('message')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Submit Button -->
                     <button
                         type="submit"
-                        id="submit-btn"
                         class="w-full px-8 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg"
                     >
                         {{ __('Send Message') }}
@@ -115,7 +128,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold text-gray-900 mb-1">{{ __('Email') }}</h3>
-                            <a href="mailto:danakaryaid@gmail.com" class="text-[#1A7332] hover:underline">danakaryaid@gmail.com</a>
+                            <a href="mailto:gmail@BUDI.com" class="text-[#1A7332] hover:underline">gmail@BUDI.com</a>
                         </div>
                     </div>
 
@@ -186,7 +199,7 @@
             {{ __('Tenang, tim DanaKarya siap membantu kamu! Hubungi kami langsung jika kamu tidak menemukan jawaban yang kamu cari.') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="mailto:danakaryaid@gmail.com" class="px-8 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg">
+            <a href="mailto:gmail@BUDI.com" class="px-8 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg">
                 {{ __('Email Us') }}
             </a>
             <a href="tel:+6285381008349" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-lg transition border-2 border-white/30">
@@ -195,62 +208,4 @@
         </div>
     </div>
 </section>
-
-<!-- EmailJS CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-<script>
-  // Initialize EmailJS
-  (function () {
-    emailjs.init("D3CIOpMohPYaWAQ4b");
-  })();
-
-  // Handle form submission
-  document.getElementById("contact-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const submitBtn = document.getElementById("submit-btn");
-    const successMsg = document.getElementById("success-message");
-    const errorMsg = document.getElementById("error-message");
-
-    // Hide messages
-    successMsg.classList.add("hidden");
-    errorMsg.classList.add("hidden");
-
-    // Disable button and show loading state
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<svg class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending...';
-
-    // Send email via EmailJS
-    emailjs.sendForm(
-      "service_re14h9a",
-      "template_75m8ilg",
-      this
-    ).then(
-      function () {
-        // Success
-        successMsg.classList.remove("hidden");
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "{{ __('Send Message') }}";
-
-        // Reset form
-        document.getElementById("contact-form").reset();
-
-        // Scroll to success message
-        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      },
-      function (error) {
-        // Error
-        errorMsg.classList.remove("hidden");
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "{{ __('Send Message') }}";
-
-        console.error("EmailJS Error:", error);
-
-        // Scroll to error message
-        errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    );
-  });
-</script>
 @endsection

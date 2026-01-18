@@ -43,17 +43,18 @@ class DatabaseSeeder extends Seeder
 
         // Create Categories
         $categories = [
-            ['name' => 'UMKM', 'description' => 'Usaha Mikro, Kecil dan Menengah', 'icon' => '🏪', 'image' => 'UMKM.jpg', 'status' => 'active'],
-            ['name' => 'Technology', 'description' => 'Tech and innovation projects', 'icon' => '💻', 'image' => 'Technology.jpg', 'status' => 'active'],
-            ['name' => 'Education', 'description' => 'Educational initiatives', 'icon' => '📚', 'image' => 'Education.jpg', 'status' => 'active'],
-            ['name' => 'Health', 'description' => 'Healthcare and wellness', 'icon' => '🏥', 'image' => 'Health.jpg', 'status' => 'active'],
-            ['name' => 'Environment', 'description' => 'Environmental conservation', 'icon' => '🌱', 'image' => 'Environment.jpg', 'status' => 'active'],
-            ['name' => 'Social', 'description' => 'Social impact projects', 'icon' => '🤝', 'image' => 'Social.jpg', 'status' => 'active'],
-            ['name' => 'Arts and Culture', 'description' => 'Seni dan Budaya Indonesia', 'icon' => '🎭', 'image' => 'SeniBudaya.jpg', 'status' => 'active'],
+            ['name' => 'UMKM', 'description' => 'Usaha Mikro, Kecil dan Menengah', 'icon' => '🏪', 'status' => 'active'],
+            ['name' => 'Technology', 'description' => 'Tech and innovation projects', 'icon' => '💻', 'status' => 'active'],
+            ['name' => 'Education', 'description' => 'Educational initiatives', 'icon' => '📚', 'status' => 'active'],
+            ['name' => 'Health', 'description' => 'Healthcare and wellness', 'icon' => '🏥', 'status' => 'active'],
+            ['name' => 'Environment', 'description' => 'Environmental conservation', 'icon' => '🌱', 'status' => 'active'],
+            ['name' => 'Social', 'description' => 'Social impact projects', 'icon' => '🤝', 'status' => 'active'],
+            ['name' => 'Arts', 'description' => 'Creative and artistic projects', 'icon' => '🎨', 'status' => 'active'],
+            ['name' => 'Art & Culture', 'description' => 'Seni dan Budaya Indonesia', 'icon' => '🎭', 'status' => 'active'],
         ];
 
         foreach ($categories as $category) {
-            Category::updateOrCreate(
+            Category::firstOrCreate(
                 ['name' => $category['name']],
                 $category
             );
@@ -101,7 +102,7 @@ class DatabaseSeeder extends Seeder
         // Additional campaigns from your database
         $educationCategory = Category::where('name', 'Education')->first();
         $healthCategory = Category::where('name', 'Health')->first();
-        $artsCategory = Category::where('name', 'Art & Culture')->first();
+        $artsCategory = Category::where('name', 'Seni & Budaya')->first();
 
         if ($creator && $umkmCategory) {
             \App\Models\Campaign::firstOrCreate(
