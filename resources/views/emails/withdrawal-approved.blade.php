@@ -13,7 +13,7 @@
     <p style="margin: 5px 0;"><strong>Campaign:</strong> {{ $withdrawal->campaign->title }}</p>
     <p style="margin: 5px 0;"><strong>Withdrawal Amount:</strong> Rp {{ number_format($withdrawal->amount, 0, ',', '.') }}</p>
     <p style="margin: 5px 0;"><strong>Bank Account:</strong> {{ $withdrawal->bank_name }} - {{ $withdrawal->account_number }}</p>
-    <p style="margin: 5px 0;"><strong>Account Name:</strong> {{ $withdrawal->account_name }}</p>
+    <p style="margin: 5px 0;"><strong>Account Name:</strong> {{ $withdrawal->account_holder }}</p>
     <p style="margin: 5px 0;"><strong>Request Date:</strong> {{ $withdrawal->created_at->format('d M Y') }}</p>
     <p style="margin: 5px 0;"><strong>Approval Date:</strong> {{ now()->format('d M Y') }}</p>
 </div>

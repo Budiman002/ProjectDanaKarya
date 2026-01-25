@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Withdrawal;
+use App\Models\Disbursement;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -14,7 +14,7 @@ class WithdrawalApprovedMail extends Mailable
     use Queueable, SerializesModels;
 
     public function __construct(
-        public Withdrawal $withdrawal
+        public Disbursement $withdrawal
     ) {}
 
     public function envelope(): Envelope
