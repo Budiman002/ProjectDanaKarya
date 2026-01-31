@@ -129,28 +129,6 @@ php artisan serve
 
 Aplikasi akan berjalan di `http://localhost:8000`
 
-## Default Users
-
-Setelah menjalankan seeder, Anda dapat login dengan akun berikut:
-
-### Admin Account
-
-- Email: `admin@danakarya.com`
-- Password: `password`
-- Role: Admin (akses penuh ke dashboard admin)
-
-### Creator Account
-
-- Email: `creator@danakarya.com`
-- Password: `password`
-- Role: Creator (dapat membuat dan mengelola campaign)
-
-### Backer Account
-
-- Email: `ahmad@example.com`
-- Password: `password`
-- Role: Backer (dapat melakukan donasi)
-
 ## Available Categories
 
 Project ini sudah memiliki 6 kategori campaign:
